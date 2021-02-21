@@ -3,6 +3,7 @@ package com.evangers.stockfield.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentHomeBinding
 import com.evangers.stockfield.ui.base.SfFragment
@@ -33,7 +34,8 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
     }
 
     override fun initBinding() {
-        viewModel.liveData.observe(viewLifecycleOwner) { state ->
+        viewModel.liveData.observe(viewLifecycleOwner) { state->
+
             state.fund?.getValueIfNotHandled()?.let {
                 val stringBuilder = StringBuilder()
                 stringBuilder.append(it.fundName).appendLine()
