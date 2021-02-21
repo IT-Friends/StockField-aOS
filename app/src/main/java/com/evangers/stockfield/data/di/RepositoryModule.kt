@@ -1,8 +1,11 @@
 package com.evangers.stockfield.data.di
 
 import com.evangers.stockfield.data.api.StockFieldApi
+import com.evangers.stockfield.data.mapper.CompanyMapper
 import com.evangers.stockfield.data.mapper.FundMapper
+import com.evangers.stockfield.data.repository.CompanyRepositoryImpl
 import com.evangers.stockfield.data.repository.FundRepositoryImpl
+import com.evangers.stockfield.domain.repository.CompanyRepository
 import com.evangers.stockfield.domain.repository.FundRepository
 import dagger.Module
 import dagger.Provides
@@ -23,4 +26,14 @@ object RepositoryModule {
     ): FundRepository {
         return FundRepositoryImpl(stockFieldApi, fundMapper)
     }
+
+    @Singleton
+    @Provides
+    fun provideCompanyRepository(
+        companyMapper: CompanyMapper
+    ): CompanyRepository {
+        return CompanyRepositoryImpl(companyMapper)
+    }
+
+
 }
