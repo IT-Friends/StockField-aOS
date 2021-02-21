@@ -6,12 +6,14 @@ import com.evangers.stockfield.ui.base.Event
 
 interface HomeStateBind {
     var companyList: Event<List<CompanyModel>>?
+    var companyFundList: Event<List<String>>?
     var fund: Event<FundModel>?
     var toastMessage: Event<String>?
 }
 
 class HomeState(
     override var companyList: Event<List<CompanyModel>>? = null,
+    override var companyFundList: Event<List<String>>? = null,
     override var fund: Event<FundModel>? = null,
     override var toastMessage: Event<String>? = null
 ) : HomeStateBind {
@@ -20,6 +22,9 @@ class HomeState(
         when (action) {
             is HomeAction.UpdateCompany -> {
                 companyList = Event(action.companyList)
+            }
+            is HomeAction.UpdateCompanyFund -> {
+                companyFundList = Event(action.fundList)
             }
             is HomeAction.UpdateFund -> {
                 fund = Event(action.fund)

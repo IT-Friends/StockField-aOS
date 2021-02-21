@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evangers.stockfield.domain.usecase.GetCompanies
 import com.evangers.stockfield.domain.usecase.GetFundInfo
+import com.evangers.stockfield.domain.usecase.GetFundList
 import com.evangers.stockfield.ui.util.debugLog
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -14,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getFundInfo: GetFundInfo,
-    private val getCompanies: GetCompanies
+    private val getCompanies: GetCompanies,
+    private val getFundList: GetFundList
 ) : ViewModel() {
 
     private val homeState = HomeState()
@@ -42,7 +44,26 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getFund(fundName: String) {
+    private fun getFundsFromCompany(companyIndex: Int) {
+        viewModelScope.launch {
+            val collectedFunds = getFundList(GetFundList.Request(companyIndex))
+            collectedFunds.collect {
+                when (it) {
+                    is GetFundList.Response.Success -> {
+                        val action = HomeAction.UpdateCompanyFund(it.funds.fundList)
+                        homeState.update(action)
+                        liveData.postValue(homeState)
+                    }
+                    is GetFundList.Response.Failure -> {
+                        homeState.update(HomeAction.ShowToast(it.exception.message.toString()))
+                        liveData.postValue(homeState)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getFundInfo(fundName: String) {
         viewModelScope.launch {
             val collectedFund = getFundInfo(GetFundInfo.Request(fundName))
             collectedFund.collect {
@@ -64,6 +85,6 @@ class HomeViewModel @Inject constructor(
     fun onCompanySelected(position: Int) {
         debugLog(position)
         // TODO: 2/21/21 fundlist 가져오고, 각 펀드들 stock 가져오고
-
+        getFundsFromCompany(position)
     }
 }

@@ -9,12 +9,15 @@ import androidx.lifecycle.Observer
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentHomeBinding
 import com.evangers.stockfield.ui.base.SfFragment
+import com.evangers.stockfield.ui.home.adapter.FundPagerAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : SfFragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
+    lateinit var fundPagerAdapter: FundPagerAdapter
 
     var binding: FragmentHomeBinding? = null
 
@@ -33,20 +36,27 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
     }
 
     override fun initUi() {
-        binding?.companySpinner?.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                }
+        binding?.run {
+            companySpinner.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                    }
 
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    viewModel.onCompanySelected(position)
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        viewModel.onCompanySelected(position)
+                    }
                 }
-            }
+            fundPagerAdapter = FundPagerAdapter(this@HomeFragment)
+            fundViewpager.adapter = fundPagerAdapter
+            TabLayoutMediator(fundTab, fundViewpager) { tab, position ->
+                tab.text = fundPagerAdapter.getFundName(position)
+            }.attach()
+        }
     }
 
     override fun initBinding() {
@@ -60,6 +70,10 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
                     )
                     this.adapter = adapter
                 }
+
+            }
+            state.companyFundList?.getValueIfNotHandled()?.let {
+                fundPagerAdapter.replaceFundList(it)
             }
             state.fund?.getValueIfNotHandled()?.let {
                 val stringBuilder = StringBuilder()
