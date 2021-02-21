@@ -2,8 +2,10 @@ package com.evangers.stockfield.ui.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
+import androidx.lifecycle.Observer
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentHomeBinding
 import com.evangers.stockfield.ui.base.SfFragment
@@ -31,11 +33,34 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
     }
 
     override fun initUi() {
+        binding?.companySpinner?.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.onCompanySelected(position)
+                }
+            }
     }
 
     override fun initBinding() {
-        viewModel.liveData.observe(viewLifecycleOwner) { state->
-
+        viewModel.liveData.observe(viewLifecycleOwner, Observer { state ->
+            state.companyList?.getValueIfNotHandled()?.let {
+                binding?.companySpinner?.apply {
+                    val adapter = ArrayAdapter<String>(
+                        requireContext(),
+                        R.layout.support_simple_spinner_dropdown_item,
+                        it.map { it.name }
+                    )
+                    this.adapter = adapter
+                }
+            }
             state.fund?.getValueIfNotHandled()?.let {
                 val stringBuilder = StringBuilder()
                 stringBuilder.append(it.fundName).appendLine()
@@ -59,7 +84,7 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
             state.toastMessage?.getValueIfNotHandled()?.let {
                 binding?.tempText?.text = it
             }
-        }
+        })
 
     }
 
