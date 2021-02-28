@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tableRowView"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/transparent"
+    android:paddingVertical="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rankField"
+        style="@style/RankCell.Row"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toStartOf="@id/tickerField"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/rankContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textColor="@color/row_content"
+            app:layout_constraintBottom_toTopOf="@id/rankDifference"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/rankDifference"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rankContent"
+            tools:text="+2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tickerField"
+        style="@style/TickerCell.Row"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toStartOf="@id/sharesField"
+        app:layout_constraintStart_toEndOf="@id/rankField">
+
+        <TextView
+            android:id="@+id/tickerContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textColor="@color/row_content"
+            app:layout_constraintBottom_toTopOf="@id/tickerDifference"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="TSLA" />
+
+        <TextView
+            android:id="@+id/tickerDifference"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tickerContent"
+            tools:text="1" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sharesField"
+        style="@style/SharesCell.Row"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toStartOf="@id/weightField"
+        app:layout_constraintStart_toEndOf="@id/tickerField">
+
+        <TextView
+            android:id="@+id/sharesContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textColor="@color/row_content"
+            app:layout_constraintBottom_toTopOf="@id/sharesDifference"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2,726469" />
+
+        <TextView
+            android:id="@+id/sharesDifference"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sharesContent"
+            tools:text="+100" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/weightField"
+        style="@style/WeightCell.Row"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toStartOf="@id/closingPriceField"
+        app:layout_constraintStart_toEndOf="@id/sharesField">
+
+        <TextView
+            android:id="@+id/weightContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textColor="@color/row_content"
+            app:layout_constraintBottom_toTopOf="@id/weightDifference"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="9.56%" />
+
+        <TextView
+            android:id="@+id/weightDifference"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weightContent"
+            tools:text="+0.32" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/closingPriceField"
+        style="@style/ClosingPriceCell.Row"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/weightField">
+
+        <TextView
+            android:id="@+id/closingPriceContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textColor="@color/row_content"
+            app:layout_constraintBottom_toTopOf="@id/closingPriceDifference"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="$600.24" />
+
+        <TextView
+            android:id="@+id/closingPriceDifference"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/closingPriceContent"
+            tools:text="-$30.4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
