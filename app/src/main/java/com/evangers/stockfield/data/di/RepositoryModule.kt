@@ -30,9 +30,10 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideCompanyRepository(
+        stockFieldApi: StockFieldApi,
         companyMapper: CompanyMapper
     ): CompanyRepository {
-        return CompanyRepositoryImpl(companyMapper)
+        return CompanyRepositoryImpl(stockFieldApi, companyMapper)
     }
 
 
