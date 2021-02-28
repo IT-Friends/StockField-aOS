@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evangers.stockfield.domain.usecase.GetCompanies
 import com.evangers.stockfield.domain.usecase.GetFundHoldings
-import com.evangers.stockfield.domain.usecase.GetFundList
+import com.evangers.stockfield.domain.usecase.GetFundListFromCompany
 import com.evangers.stockfield.ui.util.debugLog
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getFundHoldings: GetFundHoldings,
     private val getCompanies: GetCompanies,
-    private val getFundList: GetFundList
+    private val getFundListFromCompany: GetFundListFromCompany
 ) : ViewModel() {
 
     private val homeState = HomeState()
@@ -44,17 +44,20 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getFundsFromCompany(companyIndex: Int) {
+    private fun getFundsFromCompany(companyTabSelectedIndex: Int) {
         viewModelScope.launch {
-            val collectedFunds = getFundList(GetFundList.Request(companyIndex))
+            val company = homeState.companyList?.getValue()?.get(companyTabSelectedIndex)
+            val companyId = company?.id ?: -1
+            val collectedFunds =
+                getFundListFromCompany(GetFundListFromCompany.Request(companyId))
             collectedFunds.collect {
                 when (it) {
-                    is GetFundList.Response.Success -> {
+                    is GetFundListFromCompany.Response.Success -> {
                         val action = HomeAction.UpdateCompanyFund(it.funds.fundList)
                         homeState.update(action)
                         liveData.postValue(homeState)
                     }
-                    is GetFundList.Response.Failure -> {
+                    is GetFundListFromCompany.Response.Failure -> {
                         homeState.update(HomeAction.ShowToast(it.exception.message.toString()))
                         liveData.postValue(homeState)
                     }
@@ -82,9 +85,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun onCompanySelected(position: Int) {
-        debugLog(position)
+    fun onCompanyTabSelected(tabPosition: Int) {
+        debugLog(tabPosition)
         // TODO: 2/21/21 fundlist 가져오고, 각 펀드들 stock 가져오고
-        getFundsFromCompany(position)
+        getFundsFromCompany(tabPosition)
     }
 }

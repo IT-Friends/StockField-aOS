@@ -3,6 +3,7 @@ package com.evangers.stockfield.data.di
 import com.evangers.stockfield.data.api.StockFieldApi
 import com.evangers.stockfield.data.mapper.CompanyMapper
 import com.evangers.stockfield.data.mapper.FundHoldingsMapper
+import com.evangers.stockfield.data.mapper.FundMapper
 import com.evangers.stockfield.data.repository.CompanyRepositoryImpl
 import com.evangers.stockfield.data.repository.FundRepositoryImpl
 import com.evangers.stockfield.domain.repository.CompanyRepository
@@ -31,9 +32,10 @@ object RepositoryModule {
     @Provides
     fun provideCompanyRepository(
         stockFieldApi: StockFieldApi,
-        companyMapper: CompanyMapper
+        companyMapper: CompanyMapper,
+        fundMapper: FundMapper
     ): CompanyRepository {
-        return CompanyRepositoryImpl(stockFieldApi, companyMapper)
+        return CompanyRepositoryImpl(stockFieldApi, companyMapper, fundMapper)
     }
 
 

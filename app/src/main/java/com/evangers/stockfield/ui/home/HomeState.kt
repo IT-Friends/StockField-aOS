@@ -2,18 +2,19 @@ package com.evangers.stockfield.ui.home
 
 import com.evangers.stockfield.domain.model.CompanyModel
 import com.evangers.stockfield.domain.model.FundHoldingsModel
+import com.evangers.stockfield.domain.model.FundModel
 import com.evangers.stockfield.ui.base.Event
 
 interface HomeStateBind {
     var companyList: Event<List<CompanyModel>>?
-    var companyFundList: Event<List<String>>?
+    var companyFundList: Event<List<FundModel>>?
     var fundHoldings: Event<FundHoldingsModel>?
     var toastMessage: Event<String>?
 }
 
 class HomeState(
     override var companyList: Event<List<CompanyModel>>? = null,
-    override var companyFundList: Event<List<String>>? = null,
+    override var companyFundList: Event<List<FundModel>>? = null,
     override var fundHoldings: Event<FundHoldingsModel>? = null,
     override var toastMessage: Event<String>? = null
 ) : HomeStateBind {

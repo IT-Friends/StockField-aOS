@@ -5,5 +5,5 @@ import com.evangers.stockfield.domain.model.CompanyModel
 
 interface CompanyRepository {
     suspend fun getCompanies(): List<CompanyModel>
-    suspend fun getFunds(companyIndex: Int): CompanyFundsModel
+    suspend fun getFundsFromCompany(companyIndex: Int): CompanyFundsModel
 }

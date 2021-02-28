@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetFundList @Inject constructor(
+class GetFundListFromCompany @Inject constructor(
     private val companyRepository: CompanyRepository
-) : FlowUseCase<GetFundList.Request, GetFundList.Response> {
+) : FlowUseCase<GetFundListFromCompany.Request, GetFundListFromCompany.Response> {
 
     override suspend fun invoke(request: Request): Flow<Response> = flow {
         try {

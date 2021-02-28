@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentHomeBinding
 import com.evangers.stockfield.ui.base.SfFragment
@@ -39,6 +38,7 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
         binding?.run {
             companySpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
+                    var initialSelected = false
                     override fun onNothingSelected(parent: AdapterView<*>?) {
                     }
 
@@ -48,7 +48,7 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
                         position: Int,
                         id: Long
                     ) {
-                        viewModel.onCompanySelected(position)
+                        viewModel.onCompanyTabSelected(position)
                     }
                 }
             fundPagerAdapter = FundPagerAdapter(this@HomeFragment)
@@ -60,7 +60,7 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
     }
 
     override fun initBinding() {
-        viewModel.liveData.observe(viewLifecycleOwner, Observer { state ->
+        viewModel.liveData.observe(viewLifecycleOwner, { state ->
             state.companyList?.getValueIfNotHandled()?.let {
                 binding?.companySpinner?.apply {
                     val adapter = ArrayAdapter<String>(
@@ -70,7 +70,6 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
                     )
                     this.adapter = adapter
                 }
-
             }
             state.companyFundList?.getValueIfNotHandled()?.let {
                 fundPagerAdapter.replaceFundList(it)
