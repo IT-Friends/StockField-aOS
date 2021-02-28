@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evangers.stockfield.domain.usecase.GetCompanies
-import com.evangers.stockfield.domain.usecase.GetFundInfo
+import com.evangers.stockfield.domain.usecase.GetFundHoldings
 import com.evangers.stockfield.domain.usecase.GetFundList
 import com.evangers.stockfield.ui.util.debugLog
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getFundInfo: GetFundInfo,
+    private val getFundHoldings: GetFundHoldings,
     private val getCompanies: GetCompanies,
     private val getFundList: GetFundList
 ) : ViewModel() {
@@ -63,16 +63,16 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getFundInfo(fundName: String) {
+    private fun getFundHoldings(fundName: String) {
         viewModelScope.launch {
-            val collectedFund = getFundInfo(GetFundInfo.Request(fundName))
+            val collectedFund = getFundHoldings(GetFundHoldings.Request(fundName))
             collectedFund.collect {
                 when (it) {
-                    is GetFundInfo.Response.Success -> {
+                    is GetFundHoldings.Response.Success -> {
                         homeState.update(HomeAction.UpdateFund(it.fundHoldings))
                         liveData.postValue(homeState)
                     }
-                    is GetFundInfo.Response.Failure -> {
+                    is GetFundHoldings.Response.Failure -> {
                         homeState.update(HomeAction.ShowToast(it.errorMessage))
                         liveData.postValue(homeState)
 
