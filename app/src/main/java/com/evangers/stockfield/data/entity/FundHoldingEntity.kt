@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class StockEntity(
+data class FundHoldingEntity(
     @Json(name = "rank") val rank: Int,
     @Json(name = "rankDifference") val rankDifference: Int?,
     @Json(name = "ticker") val ticker: String,

@@ -69,7 +69,7 @@ class HomeViewModel @Inject constructor(
             collectedFund.collect {
                 when (it) {
                     is GetFundInfo.Response.Success -> {
-                        homeState.update(HomeAction.UpdateFund(it.fund))
+                        homeState.update(HomeAction.UpdateFund(it.fundHoldings))
                         liveData.postValue(homeState)
                     }
                     is GetFundInfo.Response.Failure -> {

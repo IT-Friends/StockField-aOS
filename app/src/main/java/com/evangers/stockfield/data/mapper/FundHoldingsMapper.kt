@@ -1,18 +1,18 @@
 package com.evangers.stockfield.data.mapper
 
-import com.evangers.stockfield.data.entity.FundEntity
-import com.evangers.stockfield.data.entity.StockEntity
-import com.evangers.stockfield.domain.model.FundModel
-import com.evangers.stockfield.domain.model.StockModel
+import com.evangers.stockfield.data.entity.FundHoldingsEntity
+import com.evangers.stockfield.data.entity.FundHoldingEntity
+import com.evangers.stockfield.domain.model.FundHoldingsModel
+import com.evangers.stockfield.domain.model.FundHoldingModel
 import javax.inject.Inject
 
-class FundMapper @Inject constructor() : EntityMapper<FundEntity, FundModel> {
+class FundHoldingsMapper @Inject constructor() : EntityMapper<FundHoldingsEntity, FundHoldingsModel> {
 
-    override fun mapFromEntity(entity: FundEntity): FundModel {
-        return FundModel(
-            fundName = entity.fundName,
-            stockList = entity.stockList.map {
-                StockModel(
+    override fun mapFromEntity(holdingsEntity: FundHoldingsEntity): FundHoldingsModel {
+        return FundHoldingsModel(
+            totalCounts = holdingsEntity.totalCounts,
+            fundHoldingList = holdingsEntity.fundHoldingList.map {
+                FundHoldingModel(
                     rank = it.rank,
                     rankDifference = it.rankDifference,
                     ticker = it.ticker,
@@ -29,11 +29,11 @@ class FundMapper @Inject constructor() : EntityMapper<FundEntity, FundModel> {
         )
     }
 
-    override fun mapToEntity(domainModel: FundModel): FundEntity {
-        return FundEntity(
-            fundName = domainModel.fundName,
-            stockList = domainModel.stockList.map {
-                StockEntity(
+    override fun mapToEntity(domainHoldingsModel: FundHoldingsModel): FundHoldingsEntity {
+        return FundHoldingsEntity(
+            totalCounts = domainHoldingsModel.totalCounts,
+            fundHoldingList = domainHoldingsModel.fundHoldingList.map {
+                FundHoldingEntity(
                     rank = it.rank,
                     rankDifference = it.rankDifference,
                     ticker = it.ticker,

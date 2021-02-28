@@ -1,6 +1,6 @@
 package com.evangers.stockfield.domain.model
 
-data class StockModel(
+data class FundHoldingModel(
     val rank: Int,
     val rankDifference: Int?,
     val ticker: String,

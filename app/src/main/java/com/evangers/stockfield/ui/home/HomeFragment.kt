@@ -75,9 +75,8 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
             state.companyFundList?.getValueIfNotHandled()?.let {
                 fundPagerAdapter.replaceFundList(it)
             }
-            state.fund?.getValueIfNotHandled()?.let {
+            state.fundHoldings?.getValueIfNotHandled()?.let {
                 val stringBuilder = StringBuilder()
-                stringBuilder.append(it.fundName).appendLine()
                 stringBuilder.append(
                     "dateTo\t" +
                             "ticker\t" +
@@ -88,7 +87,7 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
                             "weight\t" +
                             "weightDifference\t"
                 )
-                it.stockList.forEach { stock ->
+                it.fundHoldingList.forEach { stock ->
                     stringBuilder.append(
                         "${stock.dateTo}\t ${stock.ticker}\t ${stock.closingPrice}\t ${stock.closingPriceDifference}\t ${stock.shares}\t ${stock.sharesDifference}\t ${stock.weight}\t ${stock.weightDifference}\t"
                     ).appendLine()

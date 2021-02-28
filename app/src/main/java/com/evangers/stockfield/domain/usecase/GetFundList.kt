@@ -12,7 +12,7 @@ class GetFundList @Inject constructor(
 
     override suspend fun invoke(request: Request): Flow<Response> = flow {
         try {
-            val funds = companyRepository.getFunds(request.companyIndex)
+            val funds = companyRepository.getFundsFromCompany(request.companyIndex)
             emit(Response.Success(funds))
         } catch (e: java.lang.Exception) {
             emit(Response.Failure(e))

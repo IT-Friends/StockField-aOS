@@ -1,9 +1,9 @@
 package com.evangers.stockfield.domain.repository
 
-import com.evangers.stockfield.domain.model.FundModel
+import com.evangers.stockfield.domain.model.FundHoldingsModel
 
 interface FundRepository {
 
-    suspend fun getFund(fund: String): FundModel
+    suspend fun getFund(fund: String): FundHoldingsModel
 
 }

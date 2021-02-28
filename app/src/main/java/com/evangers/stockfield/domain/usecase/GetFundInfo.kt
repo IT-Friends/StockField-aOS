@@ -1,6 +1,6 @@
 package com.evangers.stockfield.domain.usecase
 
-import com.evangers.stockfield.domain.model.FundModel
+import com.evangers.stockfield.domain.model.FundHoldingsModel
 import com.evangers.stockfield.domain.repository.FundRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,7 +21,7 @@ class GetFundInfo @Inject constructor(
     class Request(val fundName: String)
 
     sealed class Response {
-        class Success(val fund: FundModel) : Response()
+        class Success(val fundHoldings: FundHoldingsModel) : Response()
         class Failure(val errorMessage: String) : Response()
     }
 }
