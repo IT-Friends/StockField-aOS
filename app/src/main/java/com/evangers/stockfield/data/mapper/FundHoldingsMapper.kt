@@ -9,7 +9,7 @@ class FundHoldingsMapper @Inject constructor() :
     override fun mapFromEntity(entity: FundHoldingComparisonEntity): FundHoldingComparisonModel {
         return FundHoldingComparisonModel(
             rank = entity.rank,
-            displayName = entity.displayName,
+            displayName = entity.displayName?:"",
             rankDifference = entity.rankDifference,
             ticker = entity.ticker,
             shares = entity.shares,
