@@ -2,7 +2,7 @@
 <resources>
 
     <style name="RankCell">
-        <item name="layout_constraintHorizontal_weight">1</item>
+        <item name="layout_constraintHorizontal_weight">1.5</item>
     </style>
 
     <style name="TickerCell">
