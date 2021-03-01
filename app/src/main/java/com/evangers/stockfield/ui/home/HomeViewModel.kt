@@ -18,7 +18,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val homeState = HomeState()
-    val liveData = MutableLiveData(homeState)
+    val liveData = MutableLiveData<HomeStateBind>(homeState)
 
     fun start() {
         getCompanyList()

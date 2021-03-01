@@ -5,7 +5,7 @@
     android:id="@+id/tableRowView"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="@color/transparent"
+    android:background="@color/home_background_darker"
     android:paddingVertical="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout

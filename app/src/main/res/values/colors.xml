@@ -11,4 +11,8 @@
     <color name="home_background_darker">#673AB7</color>
     <color name="table_title">#757575</color>
     <color name="row_content">@color/white</color>
+
+    <color name="increasing">#e34439</color>
+    <color name="decreasing">#2f8bd0</color>
+    <color name="stable">#727272</color>
 </resources>
