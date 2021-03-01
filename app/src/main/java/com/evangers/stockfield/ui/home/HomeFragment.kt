@@ -38,7 +38,6 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
         binding?.run {
             companySpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
-                    var initialSelected = false
                     override fun onNothingSelected(parent: AdapterView<*>?) {
                     }
 

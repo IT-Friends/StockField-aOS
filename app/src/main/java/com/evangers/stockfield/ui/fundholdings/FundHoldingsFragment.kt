@@ -40,6 +40,8 @@ class FundHoldingsFragment : StockFieldFragment(R.layout.fragment_fundholdings) 
         viewModel.liveData.observe(viewLifecycleOwner, { state ->
             state.fundHoldings?.getValueIfNotHandled()?.let {
                 fundHoldingsAdapter.replaceItems(it)
+                val ss = Regex("\\d{4}-\\d{2}-\\d{2}").find(it.first().dateTo ?: "", 0)
+                bindings?.dateInfo?.text = getString(R.string.dateFormat, ss?.value)
             }
         })
     }
