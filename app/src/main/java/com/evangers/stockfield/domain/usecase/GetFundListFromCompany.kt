@@ -1,19 +1,24 @@
 package com.evangers.stockfield.domain.usecase
 
-import com.evangers.stockfield.domain.model.CompanyFundsModel
-import com.evangers.stockfield.domain.repository.CompanyRepository
+import com.evangers.stockfield.domain.model.FundModel
+import com.evangers.stockfield.domain.repository.FundRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GetFundListFromCompany @Inject constructor(
-    private val companyRepository: CompanyRepository
+    private val fundRepository: FundRepository
 ) : FlowUseCase<GetFundListFromCompany.Request, GetFundListFromCompany.Response> {
 
     override suspend fun invoke(request: Request): Flow<Response> = flow {
         try {
-            val funds = companyRepository.getFundsFromCompany(request.companyIndex)
-            emit(Response.Success(funds))
+            val response = fundRepository.getFundsFromCompany(request.companyIndex)
+            emit(
+                Response.Success(
+                    total = response.totalCounts,
+                    funds = response.list
+                )
+            )
         } catch (e: java.lang.Exception) {
             emit(Response.Failure(e))
         }
@@ -27,7 +32,8 @@ class GetFundListFromCompany @Inject constructor(
     sealed class Response {
 
         class Success(
-            val funds: CompanyFundsModel
+            val total: Int,
+            val funds: List<FundModel>
         ) : Response()
 
         class Failure(

@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class FundHoldingsEntity(
+data class ListResponseEntity<T>(
     @Json(name = "totalCounts") val totalCounts: Int,
-    @Json(name = "fundHoldings") val fundHoldingList: List<FundHoldingEntity>
+    @Json(name = "list") val list: List<T>
 )

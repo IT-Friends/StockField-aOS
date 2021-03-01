@@ -4,6 +4,7 @@ import com.evangers.stockfield.data.api.StockFieldApi
 import com.evangers.stockfield.data.mapper.CompanyMapper
 import com.evangers.stockfield.data.mapper.FundHoldingsMapper
 import com.evangers.stockfield.data.mapper.FundMapper
+import com.evangers.stockfield.data.mapper.HistoryMapper
 import com.evangers.stockfield.data.repository.CompanyRepositoryImpl
 import com.evangers.stockfield.data.repository.FundRepositoryImpl
 import com.evangers.stockfield.domain.repository.CompanyRepository
@@ -23,19 +24,28 @@ object RepositoryModule {
     @Provides
     fun provideFundRepository(
         stockFieldApi: StockFieldApi,
-        fundHoldingsMapper: FundHoldingsMapper
+        fundHoldingsMapper: FundHoldingsMapper,
+        fundMapper: FundMapper,
+        historyMapper: HistoryMapper
     ): FundRepository {
-        return FundRepositoryImpl(stockFieldApi, fundHoldingsMapper)
+        return FundRepositoryImpl(
+            stockFieldApi,
+            fundHoldingsMapper,
+            fundMapper,
+            historyMapper
+        )
     }
 
     @Singleton
     @Provides
     fun provideCompanyRepository(
         stockFieldApi: StockFieldApi,
-        companyMapper: CompanyMapper,
-        fundMapper: FundMapper
+        companyMapper: CompanyMapper
     ): CompanyRepository {
-        return CompanyRepositoryImpl(stockFieldApi, companyMapper, fundMapper)
+        return CompanyRepositoryImpl(
+            stockFieldApi,
+            companyMapper
+        )
     }
 
 

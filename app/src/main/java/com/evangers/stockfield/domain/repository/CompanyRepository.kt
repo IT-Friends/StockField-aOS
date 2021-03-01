@@ -1,9 +1,9 @@
 package com.evangers.stockfield.domain.repository
 
-import com.evangers.stockfield.domain.model.CompanyFundsModel
 import com.evangers.stockfield.domain.model.CompanyModel
+import com.evangers.stockfield.domain.model.FundModel
+import com.evangers.stockfield.domain.model.ListResponseModel
 
 interface CompanyRepository {
-    suspend fun getCompanies(): List<CompanyModel>
-    suspend fun getFundsFromCompany(companyIndex: Int): CompanyFundsModel
+    suspend fun getCompanies(): ListResponseModel<CompanyModel>
 }

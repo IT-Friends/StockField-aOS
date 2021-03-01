@@ -12,8 +12,14 @@ class GetCompanies @Inject constructor(
 
     override suspend fun invoke(request: Request): Flow<Response> = flow {
         try {
-            val companyList = companyRepository.getCompanies()
-            emit(Response.Success(companyList))
+            val response = companyRepository.getCompanies()
+
+            emit(
+                Response.Success(
+                    total = response.totalCounts,
+                    companyList = response.list
+                )
+            )
         } catch (e: Exception) {
             emit(Response.Failure(e))
         }
@@ -23,6 +29,7 @@ class GetCompanies @Inject constructor(
 
     sealed class Response {
         class Success(
+            val total: Int,
             val companyList: List<CompanyModel>
         ) : Response()
 

@@ -1,6 +1,7 @@
 package com.evangers.stockfield.domain.model
 
-data class FundHoldingModel(
+data class FundHoldingComparisonModel(
+    val displayName: String,
     val rank: Int,
     val rankDifference: Int?,
     val ticker: String,
@@ -9,6 +10,7 @@ data class FundHoldingModel(
     val weight: Float,
     val weightDifference: Float?,
     val closingPrice: Float?,
+    val closingPriceChangePercent: Float?,
     val closingPriceDifference: Float?,
     val dateTo: String?,
     val dateFrom: String?
