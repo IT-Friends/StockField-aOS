@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-abstract class SfFragment constructor(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
+abstract class StockFieldFragment constructor(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
 
     @Deprecated(
         message = "필요시 onPostCreateView() override할 것",

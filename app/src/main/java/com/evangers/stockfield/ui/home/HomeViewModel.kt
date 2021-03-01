@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evangers.stockfield.domain.usecase.GetCompanies
-import com.evangers.stockfield.domain.usecase.GetFundHoldings
 import com.evangers.stockfield.domain.usecase.GetFundListFromCompany
 import com.evangers.stockfield.ui.util.debugLog
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +13,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getFundHoldings: GetFundHoldings,
     private val getCompanies: GetCompanies,
     private val getFundListFromCompany: GetFundListFromCompany
 ) : ViewModel() {
@@ -53,7 +51,7 @@ class HomeViewModel @Inject constructor(
             collectedFunds.collect {
                 when (it) {
                     is GetFundListFromCompany.Response.Success -> {
-                        val action = HomeAction.UpdateCompanyFund(it.funds.fundList)
+                        val action = HomeAction.UpdateCompanyFund(it.funds)
                         homeState.update(action)
                         liveData.postValue(homeState)
                     }
@@ -66,28 +64,8 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getFundHoldings(fundName: String) {
-        viewModelScope.launch {
-            val collectedFund = getFundHoldings(GetFundHoldings.Request(fundName))
-            collectedFund.collect {
-                when (it) {
-                    is GetFundHoldings.Response.Success -> {
-                        homeState.update(HomeAction.UpdateFund(it.fundHoldings))
-                        liveData.postValue(homeState)
-                    }
-                    is GetFundHoldings.Response.Failure -> {
-                        homeState.update(HomeAction.ShowToast(it.errorMessage))
-                        liveData.postValue(homeState)
-
-                    }
-                }
-            }
-        }
-    }
-
     fun onCompanyTabSelected(tabPosition: Int) {
         debugLog(tabPosition)
-        // TODO: 2/21/21 fundlist 가져오고, 각 펀드들 stock 가져오고
         getFundsFromCompany(tabPosition)
     }
 }

@@ -7,13 +7,13 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentHomeBinding
-import com.evangers.stockfield.ui.base.SfFragment
+import com.evangers.stockfield.ui.base.StockFieldFragment
 import com.evangers.stockfield.ui.home.adapter.FundPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : SfFragment(R.layout.fragment_home) {
+class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
     lateinit var fundPagerAdapter: FundPagerAdapter
@@ -75,23 +75,7 @@ class HomeFragment : SfFragment(R.layout.fragment_home) {
                 fundPagerAdapter.replaceFundList(it)
             }
             state.fundHoldings?.getValueIfNotHandled()?.let {
-                val stringBuilder = StringBuilder()
-                stringBuilder.append(
-                    "dateTo\t" +
-                            "ticker\t" +
-                            "closingPrice\t" +
-                            "closingPriceDifference\t" +
-                            "shares\t" +
-                            "sharesDifference\t" +
-                            "weight\t" +
-                            "weightDifference\t"
-                )
-                it.fundHoldingList.forEach { stock ->
-                    stringBuilder.append(
-                        "${stock.dateTo}\t ${stock.ticker}\t ${stock.closingPrice}\t ${stock.closingPriceDifference}\t ${stock.shares}\t ${stock.sharesDifference}\t ${stock.weight}\t ${stock.weightDifference}\t"
-                    ).appendLine()
-                }
-                binding?.tempText?.text = stringBuilder.toString()
+
             }
             state.toastMessage?.getValueIfNotHandled()?.let {
                 binding?.tempText?.text = it
