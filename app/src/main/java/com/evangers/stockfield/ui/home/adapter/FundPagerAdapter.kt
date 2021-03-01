@@ -1,9 +1,10 @@
 package com.evangers.stockfield.ui.home.adapter
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.evangers.stockfield.R
 import com.evangers.stockfield.domain.model.FundModel
+import com.evangers.stockfield.ui.fundholdings.FundHoldingsFragment
 import javax.inject.Inject
 
 class FundPagerAdapter @Inject constructor(
@@ -25,13 +26,15 @@ class FundPagerAdapter @Inject constructor(
         fundList[position].name
     else
         ""
-    
+
     override fun getItemCount(): Int {
         return fundList.size
     }
 
     override fun createFragment(position: Int): Fragment {
-        return Fragment(R.layout.fragment_fund)
+        return FundHoldingsFragment().apply {
+            arguments = bundleOf("fundName" to fundList[position].name)
+        }
     }
 
 }
