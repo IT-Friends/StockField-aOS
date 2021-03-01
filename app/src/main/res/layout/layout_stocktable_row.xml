@@ -52,12 +52,12 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:textColor="@color/row_content"
-            app:layout_constraintBottom_toTopOf="@id/tickerDifference"
+            app:layout_constraintBottom_toTopOf="@id/tickerDisplayName"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="TSLA" />
 
         <TextView
-            android:id="@+id/tickerDifference"
+            android:id="@+id/tickerDisplayName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center"

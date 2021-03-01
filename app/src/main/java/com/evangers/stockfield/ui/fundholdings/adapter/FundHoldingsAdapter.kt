@@ -50,7 +50,7 @@ class FundHoldingViewHolder constructor(
             rankDifference.applyDifference(item.rankDifference)
 
             tickerContent.text = item.ticker
-            tickerDifference.text = item.displayName
+            tickerDisplayName.text = item.displayName
 
             sharesContent.text = NumberFormat.getNumberInstance().format(item.shares)
             sharesDifference.applyDifference(item.sharesDifference)
