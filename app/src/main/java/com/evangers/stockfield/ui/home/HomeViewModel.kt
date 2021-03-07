@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evangers.stockfield.domain.usecase.GetCompanies
 import com.evangers.stockfield.domain.usecase.GetFundListFromCompany
+import com.evangers.stockfield.ui.fundholdings.HomeController
 import com.evangers.stockfield.ui.util.debugLog
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getCompanies: GetCompanies,
     private val getFundListFromCompany: GetFundListFromCompany
-) : ViewModel() {
+) : ViewModel(), HomeController {
 
     private val homeState = HomeState()
     val liveData = MutableLiveData<HomeStateBind>(homeState)
@@ -26,6 +27,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getCompanyList() {
         viewModelScope.launch {
+            setLoading(true)
             val collectedData = getCompanies(GetCompanies.Request())
             collectedData.collect {
                 when (it) {
@@ -38,6 +40,7 @@ class HomeViewModel @Inject constructor(
                         liveData.postValue(homeState)
                     }
                 }
+                setLoading(false)
             }
         }
     }
@@ -60,6 +63,7 @@ class HomeViewModel @Inject constructor(
                         liveData.postValue(homeState)
                     }
                 }
+                setLoading(false)
             }
         }
     }
@@ -67,5 +71,14 @@ class HomeViewModel @Inject constructor(
     fun onCompanyTabSelected(tabPosition: Int) {
         debugLog(tabPosition)
         getFundsFromCompany(tabPosition)
+    }
+
+    private fun setLoading(isLoading: Boolean) {
+        homeState.update(HomeAction.UpdateLoadingState(isLoading))
+        liveData.postValue(homeState)
+    }
+
+    override fun onUpdateLoadingState(isLoading: Boolean) {
+        setLoading(isLoading)
     }
 }

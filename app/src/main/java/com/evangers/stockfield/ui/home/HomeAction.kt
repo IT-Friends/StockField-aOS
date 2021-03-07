@@ -9,4 +9,5 @@ sealed class HomeAction {
     class UpdateCompanyFund(val fundList: List<FundModel>) : HomeAction()
     class UpdateFund(val fundHoldings: List<FundHoldingComparisonModel>) : HomeAction()
     class ShowToast(val text: String) : HomeAction()
+    class UpdateLoadingState(val isLoading: Boolean) : HomeAction()
 }

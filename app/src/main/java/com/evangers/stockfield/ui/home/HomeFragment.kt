@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentHomeBinding
@@ -50,7 +51,7 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
                         viewModel.onCompanyTabSelected(position)
                     }
                 }
-            fundPagerAdapter = FundPagerAdapter(this@HomeFragment)
+            fundPagerAdapter = FundPagerAdapter(viewModel, this@HomeFragment)
             fundViewpager.adapter = fundPagerAdapter
             TabLayoutMediator(fundTab, fundViewpager) { tab, position ->
                 tab.text = fundPagerAdapter.getFundName(position)
@@ -78,6 +79,9 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
             }
             state.toastMessage?.getValueIfNotHandled()?.let {
                 binding?.tempText?.text = it
+            }
+            state.isLoading?.getValueIfNotHandled()?.let { isLoading ->
+                binding?.includedLoadingBar?.loadingBarView?.isVisible = isLoading
             }
         })
 

@@ -4,10 +4,12 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.evangers.stockfield.domain.model.FundModel
+import com.evangers.stockfield.ui.fundholdings.HomeController
 import com.evangers.stockfield.ui.fundholdings.FundHoldingsFragment
 import javax.inject.Inject
 
 class FundPagerAdapter @Inject constructor(
+    private val homeController: HomeController,
     fragment: Fragment
 ) : FragmentStateAdapter(fragment) {
 
@@ -32,7 +34,9 @@ class FundPagerAdapter @Inject constructor(
     }
 
     override fun createFragment(position: Int): Fragment {
-        return FundHoldingsFragment().apply {
+        return FundHoldingsFragment(
+            homeController
+        ).apply {
             arguments = bundleOf("fundName" to fundList[position].name)
         }
     }

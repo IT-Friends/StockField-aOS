@@ -23,6 +23,7 @@ class FundHoldingsViewModel @Inject constructor(
 
     private fun getFundHoldings(fundName: String) {
         viewModelScope.launch {
+            setLoading(true)
             val collectedData = getFundHoldingsFromFund(GetFundHoldingsFromFund.Request(fundName))
             collectedData.collect {
                 when (it) {
@@ -35,9 +36,15 @@ class FundHoldingsViewModel @Inject constructor(
                         liveData.postValue(state)
                     }
                 }
+                setLoading(false)
             }
         }
     }
 
+
+    private fun setLoading(isLoading: Boolean) {
+        state.update(FundHoldingsAction.UpdateLoadingState(isLoading))
+        liveData.postValue(state)
+    }
 
 }
