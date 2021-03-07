@@ -81,6 +81,9 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
             state.toastMessage?.getValueIfNotHandled()?.let {
                 showToast(it)
             }
+            state.dateText?.getValueIfNotHandled()?.let {
+                binding?.filterView?.dateInfo?.text = it
+            }
             state.isLoading?.getValueIfNotHandled()?.let { isLoading ->
                 binding?.includedLoadingBar?.loadingBarView?.isVisible = isLoading
             }

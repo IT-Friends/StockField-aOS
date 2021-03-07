@@ -42,7 +42,8 @@ class FundHoldingsFragment(
         viewModel.liveData.observe(viewLifecycleOwner, { state ->
             state.fundHoldings?.getValueIfNotHandled()?.let {
                 fundHoldingsAdapter.replaceItems(it)
-                val ss = Regex("\\d{4}-\\d{2}-\\d{2}").find(it.first().dateTo ?: "", 0)
+                val properText = Regex("\\d{4}-\\d{2}-\\d{2}").find(it.first().dateTo ?: "", 0)
+                homeController.onDateUpdate(getString(R.string.dateFormat, properText?.value))
             }
             state.isLoading?.getValueIfNotHandled()?.let {
                 homeController.onUpdateLoadingState(it)

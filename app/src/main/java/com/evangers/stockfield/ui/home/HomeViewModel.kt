@@ -47,6 +47,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getFundsFromCompany(companyTabSelectedIndex: Int) {
         viewModelScope.launch {
+            setLoading(true)
             val company = homeState.companyList?.getValue()?.get(companyTabSelectedIndex)
             val companyId = company?.id ?: -1
             val collectedFunds =
@@ -75,6 +76,11 @@ class HomeViewModel @Inject constructor(
 
     private fun setLoading(isLoading: Boolean) {
         homeState.update(HomeAction.UpdateLoadingState(isLoading))
+        liveData.postValue(homeState)
+    }
+
+    override fun onDateUpdate(text: String) {
+        homeState.update(HomeAction.UpdateDate(text))
         liveData.postValue(homeState)
     }
 
