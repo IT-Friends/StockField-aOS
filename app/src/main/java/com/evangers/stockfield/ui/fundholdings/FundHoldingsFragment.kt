@@ -43,7 +43,6 @@ class FundHoldingsFragment(
             state.fundHoldings?.getValueIfNotHandled()?.let {
                 fundHoldingsAdapter.replaceItems(it)
                 val ss = Regex("\\d{4}-\\d{2}-\\d{2}").find(it.first().dateTo ?: "", 0)
-                bindings?.dateInfo?.text = getString(R.string.dateFormat, ss?.value)
             }
             state.isLoading?.getValueIfNotHandled()?.let {
                 homeController.onUpdateLoadingState(it)
