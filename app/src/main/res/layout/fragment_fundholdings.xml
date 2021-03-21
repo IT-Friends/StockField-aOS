@@ -12,27 +12,6 @@
     app:layout_constraintTop_toTopOf="parent">
 
 
-    <TextView
-        android:id="@+id/dateInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="* 2021-02-06 기준" />
-
-    <ImageButton
-        android:id="@+id/filterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:src="@drawable/ic_filter"
-        app:layout_constraintBottom_toBottomOf="@id/dateInfo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/dateInfo"
-        android:contentDescription="@string/filter" />
-
     <include
         android:id="@+id/fundTitle"
         layout="@layout/layout_stocktable_title"
@@ -41,7 +20,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dateInfo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fundRecyclerView"

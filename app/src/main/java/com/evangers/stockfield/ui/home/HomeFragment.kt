@@ -10,6 +10,7 @@ import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentHomeBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
 import com.evangers.stockfield.ui.home.adapter.FundPagerAdapter
+import com.evangers.stockfield.ui.util.showToast
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -78,7 +79,10 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
 
             }
             state.toastMessage?.getValueIfNotHandled()?.let {
-                binding?.tempText?.text = it
+                showToast(it)
+            }
+            state.dateText?.getValueIfNotHandled()?.let {
+                binding?.filterView?.dateInfo?.text = it
             }
             state.isLoading?.getValueIfNotHandled()?.let { isLoading ->
                 binding?.includedLoadingBar?.loadingBarView?.isVisible = isLoading

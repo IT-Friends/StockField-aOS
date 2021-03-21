@@ -29,8 +29,12 @@
 
     <color name="transparent">#00000000</color>
 
-    <color name="home_background">#3F51B5</color>
-    <color name="home_background_darker">#673AB7</color>
+    <color name="home_background">#22303d</color>
+    <color name="home_background_darker">#22303d</color>
+
+    <color name="filter_background">@color/home_background_darker</color>
+    <color name="standard_date">@color/white</color>
+
     <color name="table_title">#757575</color>
     <color name="row_content">@color/white</color>
 
