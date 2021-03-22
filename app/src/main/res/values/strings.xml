@@ -15,5 +15,6 @@
     <string name="closingPriceDecreaseFormat">%1$s(%2$s%%)</string>
     <string name="dateFormat">* %1$s 기준</string>
     <string name="filter">filter</string>
-
+    
+    <string name="moveToBack">뒤로가기</string>
 </resources>
