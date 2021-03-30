@@ -87,4 +87,9 @@ class HomeViewModel @Inject constructor(
     override fun onUpdateLoadingState(isLoading: Boolean) {
         setLoading(isLoading)
     }
+
+    override fun onStockClicked(ticker: String, displayName: String) {
+        state.update(HomeAction.NavToDetail(ticker, displayName))
+        liveData.postValue(state)
+    }
 }

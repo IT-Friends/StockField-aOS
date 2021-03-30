@@ -26,7 +26,7 @@ class FundHoldingsState(
             is FundHoldingsAction.ShowToast -> {
                 toastMessage = Event(action.text)
             }
-            is FundHoldingsAction.UpdateLoadingState->{
+            is FundHoldingsAction.UpdateLoadingState -> {
                 isLoading = Event(action.isLoading)
             }
         }

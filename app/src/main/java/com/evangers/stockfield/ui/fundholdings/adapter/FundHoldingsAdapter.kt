@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.LayoutStocktableRowBinding
 import com.evangers.stockfield.domain.model.FundHoldingComparisonModel
+import com.evangers.stockfield.ui.fundholdings.HomeController
 import com.evangers.stockfield.ui.util.applyDifference
 import java.text.NumberFormat
-import javax.inject.Inject
 
-class FundHoldingsAdapter @Inject constructor(
+class FundHoldingsAdapter constructor(
+    private val homeController: HomeController
 ) : RecyclerView.Adapter<FundHoldingViewHolder>() {
 
     private var fundHoldings = emptyList<FundHoldingComparisonModel>()
@@ -28,6 +29,12 @@ class FundHoldingsAdapter @Inject constructor(
 
     override fun onBindViewHolder(holder: FundHoldingViewHolder, position: Int) {
         holder.bind(fundHoldings[position])
+        holder.itemView.setOnClickListener {
+            homeController.onStockClicked(
+                fundHoldings[position].ticker,
+                fundHoldings[position].displayName
+            )
+        }
     }
 
     override fun getItemCount(): Int {

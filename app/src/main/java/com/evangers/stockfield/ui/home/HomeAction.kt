@@ -11,4 +11,5 @@ sealed class HomeAction {
     class ShowToast(val text: String) : HomeAction()
     class UpdateDate(val text: String) : HomeAction()
     class UpdateLoadingState(val isLoading: Boolean) : HomeAction()
+    class NavToDetail(val ticker: String, val displayName: String) : HomeAction()
 }

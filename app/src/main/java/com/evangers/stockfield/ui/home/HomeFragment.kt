@@ -6,6 +6,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentHomeBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
@@ -82,6 +83,11 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
             }
             state.isLoading?.getValueIfNotHandled()?.let { isLoading ->
                 binding.includedLoadingBar.loadingBarView.isVisible = isLoading
+            }
+            state.navToDetail?.getValueIfNotHandled()?.let {
+                val navAction =
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.first, it.second)
+                findNavController().navigate(navAction)
             }
         })
 

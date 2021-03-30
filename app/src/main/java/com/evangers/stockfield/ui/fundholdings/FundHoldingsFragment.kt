@@ -9,24 +9,22 @@ import com.evangers.stockfield.databinding.FragmentFundholdingsBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
 import com.evangers.stockfield.ui.fundholdings.adapter.FundHoldingsAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class FundHoldingsFragment(
+class FundHoldingsFragment constructor(
     private val homeController: HomeController
 ) : StockFieldFragment(R.layout.fragment_fundholdings) {
 
     private val viewModel: FundHoldingsViewModel by viewModels()
 
-    @Inject
-    lateinit var fundHoldingsAdapter: FundHoldingsAdapter
+    private val fundHoldingsAdapter = FundHoldingsAdapter(homeController)
 
     private lateinit var bindings: FragmentFundholdingsBinding
 
     override fun onViewCreatedSf(view: View, savedInstanceState: Bundle?) {
         initUi()
         initBinding()
-        val fundName: String = arguments?.getString("fundName") ?: ""
+        val fundName: String = arguments?.getString(getString(R.string.fundNameKey)) ?: ""
         viewModel.start(fundName)
     }
 

@@ -12,6 +12,7 @@ interface HomeStateBind {
     var toastMessage: Event<String>?
     var dateText: Event<String>?
     var isLoading: Event<Boolean>?
+    var navToDetail: Event<Pair<String, String>>?
 }
 
 class HomeState(
@@ -20,7 +21,8 @@ class HomeState(
     override var fundHoldings: Event<List<FundHoldingComparisonModel>>? = null,
     override var toastMessage: Event<String>? = null,
     override var dateText: Event<String>? = null,
-    override var isLoading: Event<Boolean>? = null
+    override var isLoading: Event<Boolean>? = null,
+    override var navToDetail: Event<Pair<String, String>>? = null
 ) : HomeStateBind {
 
     fun update(action: HomeAction) {
@@ -42,6 +44,9 @@ class HomeState(
             }
             is HomeAction.UpdateLoadingState -> {
                 isLoading = Event(action.isLoading)
+            }
+            is HomeAction.NavToDetail -> {
+                navToDetail = Event(action.ticker to action.displayName)
             }
         }
     }

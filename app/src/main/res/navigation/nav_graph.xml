@@ -4,9 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/homeFragment">
 
+    <include app:graph="@navigation/detail_graph" />
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.evangers.stockfield.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <fragment
+            android:id="@+id/fundHoldingsFragment"
+            android:name="com.evangers.stockfield.ui.fundholdings.FundHoldingsFragment"
+            tools:layout="@layout/fragment_fundholdings">
+
+            <argument
+                android:name="@string/fundNameKey"
+                app:argType="string"
+                app:nullable="false" />
+        </fragment>
+
+
+        <action
+            android:id="@+id/actionHomeFragmentToDetailFragment"
+            app:destination="@id/detail_graph"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+
+            <argument
+                android:name="@string/tickerKey"
+                app:argType="string"
+                app:nullable="false" />
+            <argument
+                android:name="@string/displayNameKey"
+                app:argType="string"
+                app:nullable="false" />
+        </action>
+
+    </fragment>
+
 
 </navigation>
