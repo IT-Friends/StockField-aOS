@@ -18,8 +18,8 @@ class HomeViewModel @Inject constructor(
     private val getFundListFromCompany: GetFundListFromCompany
 ) : ViewModel(), HomeController {
 
-    private val homeState = HomeState()
-    val liveData = MutableLiveData<HomeStateBind>(homeState)
+    private val state = HomeState()
+    val liveData = MutableLiveData<HomeStateBind>(state)
 
     fun start() {
         getCompanyList()
@@ -32,12 +32,12 @@ class HomeViewModel @Inject constructor(
             collectedData.collect {
                 when (it) {
                     is GetCompanies.Response.Success -> {
-                        homeState.update(HomeAction.UpdateCompany(it.companyList))
-                        liveData.postValue(homeState)
+                        state.update(HomeAction.UpdateCompany(it.companyList))
+                        liveData.postValue(state)
                     }
                     is GetCompanies.Response.Failure -> {
-                        homeState.update(HomeAction.ShowToast(it.exception.message.toString()))
-                        liveData.postValue(homeState)
+                        state.update(HomeAction.ShowToast(it.exception.message.toString()))
+                        liveData.postValue(state)
                     }
                 }
                 setLoading(false)
@@ -48,7 +48,7 @@ class HomeViewModel @Inject constructor(
     private fun getFundsFromCompany(companyTabSelectedIndex: Int) {
         viewModelScope.launch {
             setLoading(true)
-            val company = homeState.companyList?.getValue()?.get(companyTabSelectedIndex)
+            val company = state.companyList?.getValue()?.get(companyTabSelectedIndex)
             val companyId = company?.id ?: -1
             val collectedFunds =
                 getFundListFromCompany(GetFundListFromCompany.Request(companyId))
@@ -56,12 +56,12 @@ class HomeViewModel @Inject constructor(
                 when (it) {
                     is GetFundListFromCompany.Response.Success -> {
                         val action = HomeAction.UpdateCompanyFund(it.funds)
-                        homeState.update(action)
-                        liveData.postValue(homeState)
+                        state.update(action)
+                        liveData.postValue(state)
                     }
                     is GetFundListFromCompany.Response.Failure -> {
-                        homeState.update(HomeAction.ShowToast(it.exception.message.toString()))
-                        liveData.postValue(homeState)
+                        state.update(HomeAction.ShowToast(it.exception.message.toString()))
+                        liveData.postValue(state)
                     }
                 }
                 setLoading(false)
@@ -75,13 +75,13 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun setLoading(isLoading: Boolean) {
-        homeState.update(HomeAction.UpdateLoadingState(isLoading))
-        liveData.postValue(homeState)
+        state.update(HomeAction.UpdateLoadingState(isLoading))
+        liveData.postValue(state)
     }
 
     override fun onDateUpdate(text: String) {
-        homeState.update(HomeAction.UpdateDate(text))
-        liveData.postValue(homeState)
+        state.update(HomeAction.UpdateDate(text))
+        liveData.postValue(state)
     }
 
     override fun onUpdateLoadingState(isLoading: Boolean) {
