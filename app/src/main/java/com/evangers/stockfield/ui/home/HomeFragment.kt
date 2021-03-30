@@ -20,7 +20,7 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
     private val viewModel: HomeViewModel by viewModels()
     lateinit var fundPagerAdapter: FundPagerAdapter
 
-    var binding: FragmentHomeBinding? = null
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onViewCreatedSf(view: View, savedInstanceState: Bundle?) {
         initUi()
@@ -32,12 +32,8 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
         binding = FragmentHomeBinding.bind(view)
     }
 
-    override fun unbindView() {
-        binding = null
-    }
-
     override fun initUi() {
-        binding?.run {
+        binding.run {
             companySpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -63,7 +59,7 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
     override fun initBinding() {
         viewModel.liveData.observe(viewLifecycleOwner, { state ->
             state.companyList?.getValueIfNotHandled()?.let {
-                binding?.companySpinner?.apply {
+                binding.companySpinner.apply {
                     val adapter = ArrayAdapter<String>(
                         requireContext(),
                         R.layout.support_simple_spinner_dropdown_item,
@@ -82,10 +78,10 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
                 showToast(it)
             }
             state.dateText?.getValueIfNotHandled()?.let {
-                binding?.filterView?.dateInfo?.text = it
+                binding.filterView.dateInfo.text = it
             }
             state.isLoading?.getValueIfNotHandled()?.let { isLoading ->
-                binding?.includedLoadingBar?.loadingBarView?.isVisible = isLoading
+                binding.includedLoadingBar.loadingBarView.isVisible = isLoading
             }
         })
 

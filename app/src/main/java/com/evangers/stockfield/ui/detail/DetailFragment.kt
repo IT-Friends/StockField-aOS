@@ -15,7 +15,7 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
 
     private val viewModel: DetailViewModel by viewModels()
 
-    var binding: FragmentDetailBinding? = null
+    private lateinit var binding: FragmentDetailBinding
 
     override fun onViewCreatedSf(view: View, savedInstanceState: Bundle?) {
         initUi()
@@ -27,10 +27,6 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
         binding = FragmentDetailBinding.bind(view)
     }
 
-    override fun unbindView() {
-        binding = null
-    }
-
     override fun initUi() {
     }
 
@@ -40,7 +36,7 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
                 showToast(it)
             }
             state.isLoading?.getValueIfNotHandled()?.let { isLoading ->
-                binding?.includedLoadingBar?.loadingBarView?.isVisible = isLoading
+                binding.includedLoadingBar.loadingBarView.isVisible = isLoading
             }
         })
 

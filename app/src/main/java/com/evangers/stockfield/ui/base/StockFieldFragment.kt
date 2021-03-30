@@ -41,7 +41,6 @@ abstract class StockFieldFragment constructor(@LayoutRes layoutRes: Int) : Fragm
     )
     override fun onDestroyView() {
         onDestroyViewSf()
-        unbindView()
         super.onDestroyView()
     }
 
@@ -51,7 +50,6 @@ abstract class StockFieldFragment constructor(@LayoutRes layoutRes: Int) : Fragm
     abstract fun initUi()
     abstract fun initBinding()
     abstract fun bindView(view: View)
-    abstract fun unbindView()
 
 
 }

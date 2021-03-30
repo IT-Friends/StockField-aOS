@@ -21,7 +21,7 @@ class FundHoldingsFragment(
     @Inject
     lateinit var fundHoldingsAdapter: FundHoldingsAdapter
 
-    var bindings: FragmentFundholdingsBinding? = null
+    private lateinit var bindings: FragmentFundholdingsBinding
 
     override fun onViewCreatedSf(view: View, savedInstanceState: Bundle?) {
         initUi()
@@ -31,7 +31,7 @@ class FundHoldingsFragment(
     }
 
     override fun initUi() {
-        bindings?.fundRecyclerView?.apply {
+        bindings.fundRecyclerView.apply {
             this.adapter = fundHoldingsAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -54,9 +54,4 @@ class FundHoldingsFragment(
     override fun bindView(view: View) {
         bindings = FragmentFundholdingsBinding.bind(view)
     }
-
-    override fun unbindView() {
-        bindings = null
-    }
-
 }
