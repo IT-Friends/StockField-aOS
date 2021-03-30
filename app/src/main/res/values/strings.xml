@@ -2,6 +2,10 @@
     <string name="app_name">StockField</string>
     <string name="api_base">http://13.209.134.1:8080/api/</string>
 
+    <string name="fundNameKey">fundNameKey</string>
+    <string name="tickerKey">tickerKey</string>
+    <string name="displayNameKey">displayNameKey</string>
+
     <string name="rankTitle">Rank</string>
     <string name="tickerTitle">Ticker</string>
     <string name="sharesTitle">Shares</string>

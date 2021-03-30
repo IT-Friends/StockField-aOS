@@ -12,7 +12,13 @@ class DetailViewModel @Inject constructor(
     private val state = DetailState()
     val liveData = MutableLiveData<DetailStateBind>(state)
 
-    fun start() {
+    fun start(ticker: String, displayName: String) {
+        updateTitle(ticker, displayName)
+    }
+
+    private fun updateTitle(ticker: String, displayName: String) {
+        state.update(DetailAction.UpdateTitle(ticker to displayName))
+        liveData.postValue(state)
     }
 
 

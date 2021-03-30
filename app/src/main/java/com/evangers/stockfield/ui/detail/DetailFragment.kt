@@ -20,7 +20,11 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
     override fun onViewCreatedSf(view: View, savedInstanceState: Bundle?) {
         initUi()
         initBinding()
-        viewModel.start()
+        val fromBundle = DetailFragmentArgs.fromBundle(requireArguments())
+
+        val ticker = fromBundle.StringTickerKey
+        val displayName = fromBundle.StringDisplayNameKey
+        viewModel.start(ticker, displayName)
     }
 
     override fun bindView(view: View) {
@@ -32,6 +36,10 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
 
     override fun initBinding() {
         viewModel.liveData.observe(viewLifecycleOwner, { state ->
+            state.updateTitle?.getValueIfNotHandled()?.let {
+                binding.toolbar.mainTitle.text = it.first
+                binding.toolbar.subTitle.text = it.second
+            }
             state.toastMessage?.getValueIfNotHandled()?.let {
                 showToast(it)
             }
