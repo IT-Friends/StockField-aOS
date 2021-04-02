@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentDetailBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
+import com.evangers.stockfield.ui.detail.detailPageAdapter.DetailPageAdapter
 import com.evangers.stockfield.ui.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,14 +18,15 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
 
     private lateinit var binding: FragmentDetailBinding
 
+    private lateinit var detailPageAdapter: DetailPageAdapter
+    private val fromBundle by lazy {
+        DetailFragmentArgs.fromBundle(requireArguments())
+    }
+
     override fun onViewCreatedSf(view: View, savedInstanceState: Bundle?) {
         initUi()
         initBinding()
-        val fromBundle = DetailFragmentArgs.fromBundle(requireArguments())
-
-        val ticker = fromBundle.StringTickerKey
-        val displayName = fromBundle.StringDisplayNameKey
-        viewModel.start(ticker, displayName)
+        viewModel.start(fromBundle.StringTickerKey, fromBundle.StringDisplayNameKey)
     }
 
     override fun bindView(view: View) {
@@ -32,6 +34,11 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
     }
 
     override fun initUi() {
+        with(binding) {
+            detailPageAdapter = DetailPageAdapter(fromBundle.StringTickerKey, this@DetailFragment)
+            detailViewPager.adapter = detailPageAdapter
+            detailViewPager.isUserInputEnabled = false
+        }
     }
 
     override fun initBinding() {
