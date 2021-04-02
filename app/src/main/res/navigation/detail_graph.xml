@@ -21,6 +21,18 @@
             android:defaultValue=""
             app:argType="string"
             app:nullable="false" />
+
+        <fragment
+            android:id="@+id/detailInfoFragment"
+            android:name="com.evangers.stockfield.ui.detail.detailInfo.DetailInfoFragment"
+            tools:layout="@layout/fragment_detail_info">
+
+            <argument
+                android:name="@string/tickerKey"
+                app:argType="string"
+                app:nullable="false" />
+        </fragment>
+
     </fragment>
 
 </navigation>

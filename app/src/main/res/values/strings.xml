@@ -21,4 +21,15 @@
     <string name="filter">filter</string>
     
     <string name="moveToBack">뒤로가기</string>
+    <string name="highestPrice_52">52주 최고가</string>
+    <string name="lowestPrice_52">52주 최저가</string>
+    <string name="mainBusiness">주요 사업</string>
+    <string name="totalPrice">시가 총액</string>
+    <string name="PER">PER</string>
+    <string name="ROE">ROE</string>
+    <string name="PBR">PBR</string>
+
+    <string name="basicInfo">기본 정보</string>
+    <string name="fundCollection">펀드 모아보기</string>
+
 </resources>

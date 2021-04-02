@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background_darker"
+    android:theme="@style/Theme.StockField">
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="* 2021-02-06 기준" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dateText"
+        tools:text="$852.32" />
+
+    <TextView
+        android:id="@+id/priceDiff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/increasing"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/price"
+        app:layout_constraintStart_toEndOf="@id/price"
+        tools:text="+18.56(2.34%)" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/leftGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/highestPrice" />
+
+    <TextView
+        android:id="@+id/highestPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/highestPrice_52"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/price" />
+
+    <TextView
+        android:id="@+id/highestPriceContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/leftGuideLine"
+        app:layout_constraintTop_toTopOf="@id/highestPrice"
+        tools:text="$900.40" />
+
+    <TextView
+        android:id="@+id/lowestPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/highestPrice_52"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/highestPrice" />
+
+    <TextView
+        android:id="@+id/lowestPriceContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/leftGuideLine"
+        app:layout_constraintTop_toTopOf="@id/lowestPrice"
+        tools:text="$70.40" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rightGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+
+    <TextView
+        android:id="@+id/mainBusiness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mainBusiness"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/rightGuideLine"
+        app:layout_constraintTop_toTopOf="@id/highestPrice" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rightContentGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/mainBusiness" />
+
+    <TextView
+        android:id="@+id/mainBusinessContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/rightContentGuide"
+        app:layout_constraintTop_toTopOf="@id/mainBusiness"
+        tools:text="자동차" />
+
+    <TextView
+        android:id="@+id/totalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/totalPrice"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/mainBusiness"
+        app:layout_constraintTop_toBottomOf="@id/mainBusiness" />
+
+    <TextView
+        android:id="@+id/totalPriceContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/rightContentGuide"
+        app:layout_constraintTop_toTopOf="@id/totalPrice"
+        tools:text="$ 807, 825mn\n(dfjd)" />
+
+
+    <TextView
+        android:id="@+id/per"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/PER"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lowestPrice" />
+
+    <TextView
+        android:id="@+id/perContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/per"
+        app:layout_constraintStart_toEndOf="@id/leftGuideLine"
+        app:layout_constraintTop_toTopOf="@id/per"
+        tools:text="1345.12" />
+
+    <TextView
+        android:id="@+id/roe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ROE"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/per" />
+
+    <TextView
+        android:id="@+id/roeContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/roe"
+        app:layout_constraintStart_toEndOf="@id/leftGuideLine"
+        app:layout_constraintTop_toTopOf="@id/roe"
+        tools:text="5.82" />
+
+    <TextView
+        android:id="@+id/pbr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/PBR"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/roe" />
+
+    <TextView
+        android:id="@+id/pbrContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/pbr"
+        app:layout_constraintStart_toEndOf="@id/leftGuideLine"
+        app:layout_constraintTop_toTopOf="@id/pbr"
+        tools:text="35.34" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
