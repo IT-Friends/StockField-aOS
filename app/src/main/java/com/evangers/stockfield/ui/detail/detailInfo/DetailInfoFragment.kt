@@ -46,13 +46,21 @@ class DetailInfoFragment @Inject constructor(
 //                        ${it.industry}
 //                        ${it.market}
 //                        ${it.marketCap}
-//                        ${it.regularMarketVolume}
+//                        ${it.sector}
 //                    """
+                    displayName.text = fromBundle.displayNameKey
 
                     price.text =
                         getString(R.string.numberWithDollar, it.regularMarketPrice.toString())
-                    priceDiff.applyDifference(it.regularMarketChange, it.regularMarketChangePercent)
+                    priceDiff.applyDifference(
+                        it.regularMarketChange,
+                        it.regularMarketChangePercent
+                    )
 
+                    totalPriceContent.text =
+                        getString(R.string.numberWithDollar, it.regularMarketVolume.toString())
+                    sectorContent.text = it.sector
+                    industryContent.text = it.industry
                     highestPriceContent.text =
                         getString(R.string.numberWithDollar, it.fiftyTwoWeekHigh.toString())
                     lowestPriceContent.text =
@@ -63,10 +71,7 @@ class DetailInfoFragment @Inject constructor(
                         getString(R.string.numberWithDollar, it.returnOnEquity.toString())
                     pbrContent.text =
                         getString(R.string.numberWithDollar, it.priceToBookRatio.toString())
-                    mainBusinessContent.text = it.sector
 
-                    totalPriceContent.text =
-                        getString(R.string.numberWithDollar, it.regularMarketVolume.toString())
 
                 }
             }

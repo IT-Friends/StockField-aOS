@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentDetailBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
+import com.evangers.stockfield.ui.detail.detailInfo.DetailInfoFragment
 import com.evangers.stockfield.ui.detail.detailPageAdapter.DetailPageAdapter
 import com.evangers.stockfield.ui.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +45,7 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
 
     override fun initUi() {
         with(binding) {
-            detailPageAdapter = DetailPageAdapter(fromBundle.StringTickerKey, this@DetailFragment)
+            detailPageAdapter = DetailPageAdapter(fragmentList.value, this@DetailFragment)
             detailViewPager.adapter = detailPageAdapter
             detailViewPager.isUserInputEnabled = false
         }
@@ -54,7 +55,6 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
         viewModel.liveData.observe(viewLifecycleOwner, { state ->
             state.updateTitle?.getValueIfNotHandled()?.let {
                 binding.toolbar.mainTitle.text = it.first
-                binding.toolbar.subTitle.text = it.second
             }
             state.toastMessage?.getValueIfNotHandled()?.let {
                 showToast(it)
