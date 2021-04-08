@@ -37,6 +37,23 @@ fun TextView.applyDifference(
     }
 }
 
+fun TextView.applyDifference(
+    differenceNumber: Double?
+) {
+    if (differenceNumber == null) {
+        this.setTextColor(resources.getColor(R.color.stable, null))
+        this.text = "-"
+    } else if (differenceNumber > 0) {
+        this.setTextColor(resources.getColor(R.color.increasing, null))
+        val numberFormatted = NumberFormat.getNumberInstance().format(differenceNumber)
+        val text = resources.getString(R.string.numberWithPlus, numberFormatted)
+        this.text = text
+    } else if (differenceNumber < 0) {
+        this.setTextColor(resources.getColor(R.color.decreasing, null))
+        this.text = NumberFormat.getNumberInstance().format(differenceNumber)
+    }
+}
+
 
 fun TextView.applyDifference(
     differenceNumber: Float?,
