@@ -10,7 +10,7 @@ data class StockEntity(
     @Json(name = "fiftyTwoWeekHigh") val fiftyTwoWeekHigh: Float,
     @Json(name = "fiftyTwoWeekLow") val fiftyTwoWeekLow: Float,
     @Json(name = "industry") val industry: String,
-    @Json(name = "market") val market: String,
+    @Json(name = "market") val market: String?,
     @Json(name = "marketCap") val marketCap: Float,
     @Json(name = "name") val name: String,
     @Json(name = "priceEarningsRatio") val priceEarningsRatio: Float,

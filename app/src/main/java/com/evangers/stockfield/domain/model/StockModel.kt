@@ -6,7 +6,7 @@ data class StockModel(
     val fiftyTwoWeekHigh: Float,
     val fiftyTwoWeekLow: Float,
     val industry: String,
-    val market: String,
+    val market: String?,
     val marketCap: Float,
     val name: String,
     val priceEarningsRatio: Float,
