@@ -2,10 +2,6 @@
     <string name="app_name">StockField</string>
     <string name="api_base">http://13.209.134.1:8080/api/</string>
 
-    <string name="fundNameKey">fundNameKey</string>
-    <string name="tickerKey">tickerKey</string>
-    <string name="displayNameKey">displayNameKey</string>
-
     <string name="rankTitle">Rank</string>
     <string name="tickerTitle">Ticker</string>
     <string name="sharesTitle">Shares</string>
@@ -23,7 +19,8 @@
     <string name="moveToBack">뒤로가기</string>
     <string name="highestPrice_52">52주 최고가</string>
     <string name="lowestPrice_52">52주 최저가</string>
-    <string name="mainBusiness">주요 사업</string>
+    <string name="sector">사업 분야</string>
+    <string name="industry">주요 산업</string>
     <string name="totalPrice">시가 총액</string>
     <string name="PER">PER</string>
     <string name="ROE">ROE</string>

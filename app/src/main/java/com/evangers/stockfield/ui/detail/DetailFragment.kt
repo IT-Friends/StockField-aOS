@@ -23,10 +23,19 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
         DetailFragmentArgs.fromBundle(requireArguments())
     }
 
+    private val fragmentList = lazy {
+        listOf(
+            DetailInfoFragment.newInstance(
+                fromBundle.tickerKey,
+                fromBundle.displayNameKey
+            )
+        )
+    }
+
     override fun onViewCreatedSf(view: View, savedInstanceState: Bundle?) {
         initUi()
         initBinding()
-        viewModel.start(fromBundle.StringTickerKey, fromBundle.StringDisplayNameKey)
+        viewModel.start(fromBundle.tickerKey, fromBundle.displayNameKey)
     }
 
     override fun bindView(view: View) {

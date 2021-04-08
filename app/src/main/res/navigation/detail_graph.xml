@@ -11,13 +11,13 @@
         tools:layout="@layout/fragment_detail">
 
         <argument
-            android:name="@string/tickerKey"
+            android:name="tickerKey"
             android:defaultValue=""
             app:argType="string"
             app:nullable="false" />
 
         <argument
-            android:name="@string/displayNameKey"
+            android:name="displayNameKey"
             android:defaultValue=""
             app:argType="string"
             app:nullable="false" />
@@ -28,9 +28,16 @@
             tools:layout="@layout/fragment_detail_info">
 
             <argument
-                android:name="@string/tickerKey"
+                android:name="tickerKey"
                 app:argType="string"
                 app:nullable="false" />
+
+            <argument
+                android:name="displayNameKey"
+                android:defaultValue=""
+                app:argType="string"
+                app:nullable="false" />
+
         </fragment>
 
     </fragment>

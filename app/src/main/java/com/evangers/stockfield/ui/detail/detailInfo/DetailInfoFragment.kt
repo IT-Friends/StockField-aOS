@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentDetailInfoBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
+import com.evangers.stockfield.ui.detail.DetailFragmentArgs
 import com.evangers.stockfield.ui.util.applyDifference
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -20,10 +21,14 @@ class DetailInfoFragment @Inject constructor(
 
     private lateinit var bindings: FragmentDetailInfoBinding
 
+    private val fromBundle by lazy {
+        DetailFragmentArgs.fromBundle(requireArguments())
+    }
+
     override fun onViewCreatedSf(view: View, savedInstanceState: Bundle?) {
         initUi()
         initBinding()
-        val stockName: String = requireArguments().getString(getString(R.string.tickerKey)) ?: ""
+        val stockName = fromBundle.tickerKey
         viewModel.start(stockName)
     }
 
@@ -74,10 +79,11 @@ class DetailInfoFragment @Inject constructor(
     }
 
     companion object {
+        private const val tickerKey = "tickerKey"
+        private const val displayNameKey = "displayNameKey"
         fun newInstance(stockName: String, displayName: String): DetailInfoFragment {
             return DetailInfoFragment().apply {
-                val tickerKey = resources.getString(R.string.tickerKey)
-                arguments = bundleOf(tickerKey to stockName)
+                arguments = bundleOf(tickerKey to stockName, displayNameKey to displayName)
             }
         }
     }
