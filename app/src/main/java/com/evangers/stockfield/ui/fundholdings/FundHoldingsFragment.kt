@@ -2,6 +2,7 @@ package com.evangers.stockfield.ui.fundholdings
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evangers.stockfield.R
@@ -24,7 +25,7 @@ class FundHoldingsFragment constructor(
     override fun onViewCreatedSf(view: View, savedInstanceState: Bundle?) {
         initUi()
         initBinding()
-        val fundName: String = arguments?.getString(getString(R.string.fundNameKey)) ?: ""
+        val fundName: String = arguments?.getString(fundNameKey) ?: ""
         viewModel.start(fundName)
     }
 
@@ -41,7 +42,11 @@ class FundHoldingsFragment constructor(
             state.fundHoldings?.getValueIfNotHandled()?.let {
                 fundHoldingsAdapter.replaceItems(it)
                 val properText = Regex("\\d{4}-\\d{2}-\\d{2}").find(it.first().dateTo ?: "", 0)
-                homeController.onDateUpdate(getString(R.string.dateFormat, properText?.value))
+
+                val tabIndex = arguments?.getInt(tabIndexKey) ?: -1
+                val text = getString(R.string.dateFormat, properText?.value)
+
+                homeController.onDateUpdate(tabIndex to text)
             }
             state.isLoading?.getValueIfNotHandled()?.let {
                 homeController.onUpdateLoadingState(it)
@@ -51,5 +56,19 @@ class FundHoldingsFragment constructor(
 
     override fun bindView(view: View) {
         bindings = FragmentFundholdingsBinding.bind(view)
+    }
+
+    companion object {
+        private const val fundNameKey = "fundNameKey"
+        private const val tabIndexKey = "tabIndexKey"
+        fun newInstance(
+            homeController: HomeController,
+            fundName: String,
+            tabIndex: Int
+        ): FundHoldingsFragment {
+            return FundHoldingsFragment(homeController).apply {
+                arguments = bundleOf(fundNameKey to fundName, tabIndexKey to tabIndex)
+            }
+        }
     }
 }

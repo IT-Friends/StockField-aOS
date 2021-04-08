@@ -1,27 +1,34 @@
 package com.evangers.stockfield.ui.home.adapter
 
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.evangers.stockfield.R
 import com.evangers.stockfield.domain.model.FundModel
-import com.evangers.stockfield.ui.fundholdings.FundHoldingsFragment
-import com.evangers.stockfield.ui.fundholdings.HomeController
 
 class FundPagerAdapter constructor(
-    private val homeController: HomeController,
-    private val fragment: Fragment
-) : FragmentStateAdapter(fragment) {
+    fragmentManager: FragmentManager,
+    lifecycle: Lifecycle
+) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     private var fundList: List<FundModel> = emptyList()
         set(value) {
             field = value
-            notifyDataSetChanged()
         }
 
+    private var fragmentList: List<Fragment> = listOf()
 
     fun replaceFundList(list: List<FundModel>) {
         fundList = list
+    }
+
+    fun replaceFragmentList(list: List<Fragment>): Boolean {
+        if (fragmentList != list) {
+            fragmentList = list
+            notifyDataSetChanged()
+            return true
+        }
+        return false
     }
 
     fun getFundName(position: Int): String = if (position < fundList.size)
@@ -34,12 +41,7 @@ class FundPagerAdapter constructor(
     }
 
     override fun createFragment(position: Int): Fragment {
-        return FundHoldingsFragment(
-            homeController
-        ).apply {
-            val fundNameKey = fragment.getString(R.string.fundNameKey)
-            arguments = bundleOf(fundNameKey to fundList[position].name)
-        }
+        return fragmentList[position]
     }
 
 }

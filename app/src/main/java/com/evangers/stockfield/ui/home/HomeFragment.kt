@@ -12,6 +12,7 @@ import com.evangers.stockfield.databinding.FragmentHomeBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
 import com.evangers.stockfield.ui.home.adapter.FundPagerAdapter
 import com.evangers.stockfield.ui.util.showToast
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,15 +20,17 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
-    lateinit var fundPagerAdapter: FundPagerAdapter
+    private lateinit var fundPagerAdapter: FundPagerAdapter
 
     private lateinit var binding: FragmentHomeBinding
 
     override fun onViewCreatedSf(view: View, savedInstanceState: Bundle?) {
         initUi()
         initBinding()
+        lifecycle.addObserver(viewModel)
         viewModel.start()
     }
+
 
     override fun bindView(view: View) {
         binding = FragmentHomeBinding.bind(view)
@@ -49,8 +52,27 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
                         viewModel.onCompanyTabSelected(position)
                     }
                 }
-            fundPagerAdapter = FundPagerAdapter(viewModel, this@HomeFragment)
+            fundTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                var init = false
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    if (init.not()) {
+                        init = true
+                        return
+                    }
+                    val position = tab?.position
+                    viewModel.onFundTabSelected(position)
+                    viewModel.displayDate()
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                }
+            })
+            fundPagerAdapter = FundPagerAdapter(childFragmentManager, lifecycle)
             fundViewpager.adapter = fundPagerAdapter
+            fundViewpager.offscreenPageLimit = 10
             TabLayoutMediator(fundTab, fundViewpager) { tab, position ->
                 tab.text = fundPagerAdapter.getFundName(position)
             }.attach()
@@ -69,16 +91,16 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
                     this.adapter = adapter
                 }
             }
-            state.companyFundList?.getValueIfNotHandled()?.let {
-                fundPagerAdapter.replaceFundList(it)
-            }
-            state.fundHoldings?.getValueIfNotHandled()?.let {
-
+            state.companyFundList?.let { fundPagerAdapter.replaceFundList(it) }
+            if (fundPagerAdapter.replaceFragmentList(state.fragmentList)) {
+                binding.fundViewpager.postDelayed({
+                    binding.fundViewpager.setCurrentItem(state.currentFundTabPosition, false)
+                }, 100)
             }
             state.toastMessage?.getValueIfNotHandled()?.let {
                 showToast(it)
             }
-            state.dateText?.getValueIfNotHandled()?.let {
+            state.dateText?.let {
                 binding.filterView.dateInfo.text = it
             }
             state.isLoading?.getValueIfNotHandled()?.let { isLoading ->
@@ -93,5 +115,8 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
 
     }
 
-
+    override fun onDestroyViewSf() {
+        super.onDestroyViewSf()
+        lifecycle.removeObserver(viewModel)
+    }
 }

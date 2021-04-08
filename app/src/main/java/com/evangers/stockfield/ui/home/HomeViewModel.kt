@@ -1,5 +1,6 @@
 package com.evangers.stockfield.ui.home
 
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +17,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getCompanies: GetCompanies,
     private val getFundListFromCompany: GetFundListFromCompany
-) : ViewModel(), HomeController {
+) : ViewModel(), HomeController, LifecycleObserver {
 
     private val state = HomeState()
     val liveData = MutableLiveData<HomeStateBind>(state)
@@ -55,7 +56,7 @@ class HomeViewModel @Inject constructor(
             collectedFunds.collect {
                 when (it) {
                     is GetFundListFromCompany.Response.Success -> {
-                        val action = HomeAction.UpdateCompanyFund(it.funds)
+                        val action = HomeAction.UpdateCompanyFund(this@HomeViewModel, it.funds)
                         state.update(action)
                         liveData.postValue(state)
                     }
@@ -71,7 +72,10 @@ class HomeViewModel @Inject constructor(
 
     fun onCompanyTabSelected(tabPosition: Int) {
         debugLog(tabPosition)
-        getFundsFromCompany(tabPosition)
+        if (state.currentSpinnerPosition != tabPosition) {
+            state.currentSpinnerPosition = tabPosition
+            getFundsFromCompany(tabPosition)
+        }
     }
 
     private fun setLoading(isLoading: Boolean) {
@@ -79,9 +83,10 @@ class HomeViewModel @Inject constructor(
         liveData.postValue(state)
     }
 
-    override fun onDateUpdate(text: String) {
-        state.update(HomeAction.UpdateDate(text))
+    override fun onDateUpdate(pair: Pair<Int, String>) {
+        state.update(HomeAction.UpdateDate(pair))
         liveData.postValue(state)
+        displayDate()
     }
 
     override fun onUpdateLoadingState(isLoading: Boolean) {
@@ -90,6 +95,16 @@ class HomeViewModel @Inject constructor(
 
     override fun onStockClicked(ticker: String, displayName: String) {
         state.update(HomeAction.NavToDetail(ticker, displayName))
+        liveData.postValue(state)
+    }
+
+    fun onFundTabSelected(position: Int?) {
+        state.currentFundTabPosition = position ?: 0
+        displayDate()
+    }
+
+    fun displayDate() {
+        state.update(HomeAction.DisplayDate(state.currentFundTabPosition))
         liveData.postValue(state)
     }
 }
