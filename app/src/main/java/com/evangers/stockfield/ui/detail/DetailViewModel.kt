@@ -27,4 +27,9 @@ class DetailViewModel @Inject constructor(
         liveData.postValue(state)
     }
 
+    fun onBackPressed() {
+        state.update(DetailAction.NavToBack)
+        liveData.postValue(state)
+    }
+
 }
