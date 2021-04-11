@@ -20,6 +20,7 @@ class GetStockDetail @Inject constructor(
                 )
             )
         } catch (e: Exception) {
+            e.printStackTrace()
             emit(Response.Failure(e))
         }
     }

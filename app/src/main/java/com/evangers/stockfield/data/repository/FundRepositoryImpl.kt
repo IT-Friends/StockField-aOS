@@ -38,7 +38,7 @@ class FundRepositoryImpl @Inject constructor(
 
     override suspend fun getFundComparison(
         page: Int,
-        itemsPerPage: Int,
+        itemsPerPage: Int?,
         fund: String,
         dateFrom: String?,
         dateTo: String?,
@@ -64,7 +64,7 @@ class FundRepositoryImpl @Inject constructor(
 
     override suspend fun getFundHistory(
         page: Int,
-        itemsPerPage: Int,
+        itemsPerPage: Int?,
         fundName: String,
         ticker: String
     ): ListResponseModel<HistoryModel> {

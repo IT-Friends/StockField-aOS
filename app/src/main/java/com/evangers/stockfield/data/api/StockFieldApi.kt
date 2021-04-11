@@ -13,7 +13,7 @@ interface StockFieldApi {
         @Query(value = "date_to") dateTo: String? = null,
         @Query(value = "order") order: String = "ranking",
         @Query(value = "page") page: Int,
-        @Query(value = "per_page") perPage: Int,
+        @Query(value = "per_page") perPage: Int?,
     ): ListResponseEntity<FundHoldingComparisonEntity>
 
     @GET("companies")
@@ -30,7 +30,7 @@ interface StockFieldApi {
         @Path(value = "fundName") fundName: String,
         @Path(value = "ticker") ticker: String,
         @Query(value = "page") page: Int,
-        @Query(value = "per_page") perPage: Int
+        @Query(value = "per_page") perPage: Int?
     ): ListResponseEntity<HistoryEntity>
 
     @GET("stocks/{ticker}")

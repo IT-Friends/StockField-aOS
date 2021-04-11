@@ -12,8 +12,7 @@ class GetFundHoldingsFromFund @Inject constructor(
     override suspend fun invoke(request: Request): Flow<Response> = flow {
         try {
             val response = fundRepositoryImpl.getFundComparison(
-                fund = request.fundName,
-                itemsPerPage = 100
+                fund = request.fundName
             )
             emit(
                 Response.Success(
