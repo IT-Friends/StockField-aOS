@@ -22,18 +22,30 @@
             app:argType="string"
             app:nullable="false" />
 
+        <argument
+            android:name="fundNameKey"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+
         <fragment
             android:id="@+id/detailInfoFragment"
             android:name="com.evangers.stockfield.ui.detail.detailInfo.DetailInfoFragment"
             tools:layout="@layout/fragment_detail_info">
-
             <argument
                 android:name="tickerKey"
+                android:defaultValue=""
                 app:argType="string"
                 app:nullable="false" />
 
             <argument
                 android:name="displayNameKey"
+                android:defaultValue=""
+                app:argType="string"
+                app:nullable="false" />
+
+            <argument
+                android:name="fundNameKey"
                 android:defaultValue=""
                 app:argType="string"
                 app:nullable="false" />

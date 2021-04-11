@@ -39,6 +39,10 @@
                 android:name="displayNameKey"
                 app:argType="string"
                 app:nullable="false" />
+            <argument
+                android:name="fundNameKey"
+                app:argType="string"
+                app:nullable="false" />
         </action>
 
     </fragment>

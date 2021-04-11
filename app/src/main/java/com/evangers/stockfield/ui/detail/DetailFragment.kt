@@ -30,7 +30,8 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
         listOf(
             DetailInfoFragment.newInstance(
                 fromBundle.tickerKey,
-                fromBundle.displayNameKey
+                fromBundle.displayNameKey,
+                fromBundle.fundNameKey
             )
         )
     }

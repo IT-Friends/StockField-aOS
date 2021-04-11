@@ -84,9 +84,11 @@ class DetailInfoFragment @Inject constructor(
     companion object {
         private const val tickerKey = "tickerKey"
         private const val displayNameKey = "displayNameKey"
-        fun newInstance(stockName: String, displayName: String): DetailInfoFragment {
+        private const val fundNameKey = "fundNameKey"
+        fun newInstance(stockName: String, displayName: String, fundName: String): DetailInfoFragment {
             return DetailInfoFragment().apply {
-                arguments = bundleOf(tickerKey to stockName, displayNameKey to displayName)
+                arguments = bundleOf(tickerKey to stockName, displayNameKey to displayName,
+                fundNameKey to fundName)
             }
         }
     }

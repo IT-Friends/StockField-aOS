@@ -107,8 +107,15 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
                 binding.includedLoadingBar.loadingBarView.isVisible = isLoading
             }
             state.navToDetail?.getValueIfNotHandled()?.let {
+                val tickerName = it.first
+                val displayName = it.second
+                val fundName = fundPagerAdapter.getFundName(state.currentFundTabPosition)
                 val navAction =
-                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.first, it.second)
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                        tickerName,
+                        displayName,
+                        fundName
+                    )
                 findNavController().navigate(navAction)
             }
         })
