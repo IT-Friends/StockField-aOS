@@ -25,6 +25,15 @@ interface StockFieldApi {
         @Query(value = "company_id") companyId: Int
     ): ListResponseEntity<FundEntity>
 
+    @GET("funds")
+    suspend fun getFundsFromTicker(
+        @Query(value = "attachments") attachments: Array<String> = arrayOf(
+            "company_name",
+            "company_icon_url"
+        ),
+        @Query(value = "following_tickers") followingTickers: Array<String>
+    ): ListResponseEntity<FundEntity>
+
     @GET("funds/{fundName}/fund_holdings/{ticker}/history")
     suspend fun getHistoryFromFund(
         @Path(value = "fundName") fundName: String,

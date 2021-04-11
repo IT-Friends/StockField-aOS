@@ -57,13 +57,14 @@ class DetailInfoViewModel @Inject constructor(
             ).collect {
                 when (it) {
                     is GetFundHistoryWithStock.Response.Success -> {
-                        val dataSet = LineDataSet(it.list.reversed().mapIndexed { index, historyModel ->
-                            Entry(index.toFloat(), historyModel.shares.toFloat())
-                        }, "shares")
-                            .apply {
-                                setDrawValues(false) // 터치시 노란 선 제거
-                                highLightColor = Color.TRANSPARENT
-                            }
+                        val dataSet =
+                            LineDataSet(it.list.reversed().mapIndexed { index, historyModel ->
+                                Entry(index.toFloat(), historyModel.shares.toFloat())
+                            }, "shares")
+                                .apply {
+                                    setDrawValues(false) // 터치시 노란 선 제거
+                                    highLightColor = Color.TRANSPARENT
+                                }
                         val data = LineData(dataSet)
                         state.update(DetailInfoAction.UpdateHistoryData(page, data))
                         liveData.postValue(state)

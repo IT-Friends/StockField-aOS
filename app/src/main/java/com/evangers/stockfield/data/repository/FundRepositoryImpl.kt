@@ -36,6 +36,22 @@ class FundRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getFundsFromTicker(ticker: String): ListResponseModel<FundModel> {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                stockFieldApi.getFundsFromTicker(followingTickers = arrayOf(ticker))
+            }
+            return ListResponseModel(
+                totalCounts = response.totalCounts,
+                list = response.list.map {
+                    fundMapper.mapFromEntity(it)
+                }
+            )
+        } catch (exception: Exception) {
+            throw exception
+        }
+    }
+
     override suspend fun getFundComparison(
         page: Int,
         itemsPerPage: Int?,
