@@ -9,6 +9,7 @@ import com.evangers.stockfield.databinding.FragmentDetailInfoBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
 import com.evangers.stockfield.ui.detail.DetailFragmentArgs
 import com.evangers.stockfield.ui.util.applyDifference
+import com.evangers.stockfield.ui.util.toText
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -65,12 +66,9 @@ class DetailInfoFragment @Inject constructor(
                         getString(R.string.numberWithDollar, it.fiftyTwoWeekHigh.toString())
                     lowestPriceContent.text =
                         getString(R.string.numberWithDollar, it.fiftyTwoWeekLow.toString())
-                    perContent.text =
-                        getString(R.string.numberWithDollar, it.priceEarningsRatio.toString())
-                    roeContent.text =
-                        getString(R.string.numberWithDollar, it.returnOnEquity.toString())
-                    pbrContent.text =
-                        getString(R.string.numberWithDollar, it.priceToBookRatio.toString())
+                    perContent.text = it.priceEarningsRatio.toText()
+                    roeContent.text = it.returnOnEquity.toText()
+                    pbrContent.text = it.priceToBookRatio.toText()
 
 
                 }

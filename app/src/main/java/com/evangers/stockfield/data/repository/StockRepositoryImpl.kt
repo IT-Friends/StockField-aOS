@@ -32,7 +32,7 @@ class StockRepositoryImpl @Inject constructor(
             regularMarketDayLow = response.regularMarketDayLow,
             regularMarketPreviousClose = response.regularMarketPreviousClose,
             regularMarketPrice = response.regularMarketPrice,
-            regularMarketTime = response.regularMarketTime,
+            regularMarketTime = response.regularMarketTime ?: "",
             regularMarketVolume = response.regularMarketVolume,
             returnOnEquity = response.returnOnEquity,
             sector = response.sector,
