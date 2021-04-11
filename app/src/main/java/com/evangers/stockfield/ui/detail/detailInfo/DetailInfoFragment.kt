@@ -1,8 +1,10 @@
 package com.evangers.stockfield.ui.detail.detailInfo
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentDetailInfoBinding
@@ -30,10 +32,34 @@ class DetailInfoFragment @Inject constructor(
         initUi()
         initBinding()
         val stockName = fromBundle.tickerKey
-        viewModel.start(stockName)
+        val fundName = fromBundle.fundNameKey
+        viewModel.start(stockName, fundName)
     }
 
     override fun initUi() {
+
+
+        with(bindings) {
+            lineChart.axisLeft.run {
+                setDrawAxisLine(false)
+                setDrawGridLines(false)
+                textColor = Color.TRANSPARENT
+            }
+            lineChart.axisRight.run {
+                isEnabled = false
+            }
+            // X 축
+            lineChart.xAxis.run {
+                textColor =
+                    Color.TRANSPARENT
+                setDrawAxisLine(false)
+                setDrawGridLines(false)
+                setAvoidFirstLastClipping(true)
+            } // 범례
+            lineChart.legend.run { isEnabled = false }
+
+
+        }
 
     }
 
@@ -71,6 +97,18 @@ class DetailInfoFragment @Inject constructor(
                     pbrContent.text = it.priceToBookRatio.toText()
 
 
+                }
+            }
+            state.isChartLoading?.getValueIfNotHandled()?.let {
+                bindings.chartLoadingBar.loadingBarView.isVisible = it
+            }
+            state.historyData?.getValueIfNotHandled()?.let {
+                bindings.lineChart.apply {
+                    this.data = it
+                    description.isEnabled = false
+                    isHighlightPerDragEnabled = true
+                    requestDisallowInterceptTouchEvent(true)
+                    invalidate()
                 }
             }
 

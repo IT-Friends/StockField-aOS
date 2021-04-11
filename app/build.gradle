@@ -52,6 +52,7 @@ dependencies {
     implementation networkDependencies.values()
     implementation hiltDependencies.values()
     implementation coroutinesDependencies.values()
+    implementation chart.values()
     kapt kaptList.values()
 
     testImplementation 'junit:junit:4.13.1'
