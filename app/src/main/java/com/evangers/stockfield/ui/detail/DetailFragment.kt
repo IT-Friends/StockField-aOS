@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentDetailBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
+import com.evangers.stockfield.ui.detail.detailCollection.DetailCollectionFragment
 import com.evangers.stockfield.ui.detail.detailInfo.DetailInfoFragment
 import com.evangers.stockfield.ui.detail.detailPageAdapter.DetailPageAdapter
 import com.evangers.stockfield.ui.util.onBackPressedDispatcher
@@ -33,6 +34,9 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
                 fromBundle.tickerKey,
                 fromBundle.displayNameKey,
                 fromBundle.fundNameKey
+            ),
+            DetailCollectionFragment.newInstance(
+                fromBundle.tickerKey
             )
         )
     }
