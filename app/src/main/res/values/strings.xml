@@ -29,4 +29,7 @@
     <string name="basicInfo">기본 정보</string>
     <string name="fundCollection">펀드 모아보기</string>
 
+    <string name="failToLoading">데이터를 불러오는데 실패했습니다.</string>
+    <string name="etfHoldingsInfoFormat">Stockfield에서 제공하는 ETF중 %1$d곳에서 보유중입니다.</string>
+
 </resources>
