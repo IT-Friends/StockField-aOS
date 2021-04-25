@@ -28,19 +28,7 @@
         app:tabIndicatorFullWidth="false"
         app:tabMode="fixed"
         app:tabRippleColor="@color/transparent"
-        app:tabTextColor="@color/white">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/basicInfo" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fundCollection" />
-
-    </com.google.android.material.tabs.TabLayout>
+        app:tabTextColor="@color/white" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/detailViewPager"
