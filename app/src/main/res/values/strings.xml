@@ -15,7 +15,7 @@
     <string name="closingPriceDecreaseFormat">%1$s(%2$s%%)</string>
     <string name="dateFormat">* %1$s 기준</string>
     <string name="filter">filter</string>
-    
+
     <string name="moveToBack">뒤로가기</string>
     <string name="highestPrice_52">52주 최고가</string>
     <string name="lowestPrice_52">52주 최저가</string>
@@ -32,4 +32,5 @@
     <string name="failToLoading">데이터를 불러오는데 실패했습니다.</string>
     <string name="etfHoldingsInfoFormat">Stockfield에서 제공하는 ETF중 %1$d곳에서 보유중입니다.</string>
 
+    <string name="fundImageDescription">Fund Image</string>
 </resources>

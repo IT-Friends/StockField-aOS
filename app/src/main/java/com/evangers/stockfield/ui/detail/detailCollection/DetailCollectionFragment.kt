@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentDetailCollectionBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
@@ -19,6 +20,7 @@ class DetailCollectionFragment @Inject constructor(
     private val viewModel: DetailCollectionViewModel by viewModels()
 
     private lateinit var bindings: FragmentDetailCollectionBinding
+    private lateinit var fundCollectionAdapter: FundCollectionAdapter
 
     override fun onViewCreatedSf(view: View, savedInstanceState: Bundle?) {
         initUi()
@@ -28,7 +30,11 @@ class DetailCollectionFragment @Inject constructor(
     }
 
     override fun initUi() {
-
+        fundCollectionAdapter = FundCollectionAdapter()
+        bindings.fundItemRecyclerView.let {
+            it.layoutManager = LinearLayoutManager(requireContext())
+            it.adapter = fundCollectionAdapter
+        }
     }
 
     override fun initBinding() {
@@ -42,7 +48,7 @@ class DetailCollectionFragment @Inject constructor(
                     loadingBar.loadingBarView.isVisible = it
                 }
                 state.fundList?.getValueIfNotHandled()?.let {
-                    // TODO: 4/25/21 리싸이클러뷰 작성하기
+                    fundCollectionAdapter.replaceItem(it)
                 }
             }
         })
