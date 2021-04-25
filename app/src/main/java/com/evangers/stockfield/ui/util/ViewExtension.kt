@@ -1,8 +1,39 @@
 package com.evangers.stockfield.ui.util
 
+import android.graphics.drawable.Drawable
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.DrawableRes
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
 import com.evangers.stockfield.R
 import java.text.NumberFormat
+
+fun ViewGroup.createView(layoutId: Int): View =
+    LayoutInflater.from(context).inflate(layoutId, this, false)
+
+fun ImageView.showUrl(
+    url: String?,
+    applyActions: RequestBuilder<Drawable>.() -> RequestBuilder<Drawable> = { this }
+) {
+    Glide.with(this)
+        .load(url)
+        .applyActions()
+        .into(this)
+}
+
+fun ImageView.showDrawable(
+    @DrawableRes drawableId: Int,
+    applyActions: RequestBuilder<Drawable>.() -> RequestBuilder<Drawable> = { this }
+) {
+    Glide.with(this)
+        .load(drawableId)
+        .applyActions()
+        .into(this)
+}
 
 fun TextView.applyDifference(
     differenceNumber: Int?
