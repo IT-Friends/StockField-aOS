@@ -12,6 +12,7 @@ import com.evangers.stockfield.ui.detail.detailInfo.DetailInfoFragment
 import com.evangers.stockfield.ui.detail.detailPageAdapter.DetailPageAdapter
 import com.evangers.stockfield.ui.util.onBackPressedDispatcher
 import com.evangers.stockfield.ui.util.showToast
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,7 +52,15 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
         with(binding) {
             detailPageAdapter = DetailPageAdapter(fragmentList.value, this@DetailFragment)
             detailViewPager.adapter = detailPageAdapter
-            detailViewPager.isUserInputEnabled = false
+            detailViewPager.isUserInputEnabled = false // 슬라이드해도 동작안하게 막음
+
+            TabLayoutMediator(detailTab, detailViewPager) { tab, position ->
+                tab.text = when (position) {
+                    1 -> getString(R.string.fundCollection)
+                    else -> getString(R.string.basicInfo)
+                }
+            }.attach()
+
             toolbar.backButton.setOnClickListener { viewModel.onBackPressed() }
         }
     }
