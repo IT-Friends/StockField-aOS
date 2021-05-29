@@ -40,23 +40,21 @@ class DetailInfoFragment @Inject constructor(
 
 
         with(bindings) {
-            lineChart.axisLeft.run {
-                setDrawAxisLine(false)
+            candleStickChart.axisLeft.run {
                 setDrawGridLines(false)
-                textColor = Color.TRANSPARENT
+                textColor = Color.WHITE
             }
-            lineChart.axisRight.run {
+            candleStickChart.axisRight.run {
                 isEnabled = false
             }
             // X 축
-            lineChart.xAxis.run {
-                textColor =
-                    Color.TRANSPARENT
+            candleStickChart.xAxis.run {
+                textColor = Color.TRANSPARENT
                 setDrawAxisLine(false)
                 setDrawGridLines(false)
                 setAvoidFirstLastClipping(true)
             } // 범례
-            lineChart.legend.run { isEnabled = false }
+            candleStickChart.legend.run { isEnabled = false }
 
 
         }
@@ -103,7 +101,7 @@ class DetailInfoFragment @Inject constructor(
                 bindings.chartLoadingBar.loadingBarView.isVisible = it
             }
             state.historyData?.getValueIfNotHandled()?.let {
-                bindings.lineChart.apply {
+                bindings.candleStickChart.apply {
                     this.data = it
                     description.isEnabled = false
                     isHighlightPerDragEnabled = true
@@ -123,10 +121,16 @@ class DetailInfoFragment @Inject constructor(
         private const val tickerKey = "tickerKey"
         private const val displayNameKey = "displayNameKey"
         private const val fundNameKey = "fundNameKey"
-        fun newInstance(stockName: String, displayName: String, fundName: String): DetailInfoFragment {
+        fun newInstance(
+            stockName: String,
+            displayName: String,
+            fundName: String
+        ): DetailInfoFragment {
             return DetailInfoFragment().apply {
-                arguments = bundleOf(tickerKey to stockName, displayNameKey to displayName,
-                fundNameKey to fundName)
+                arguments = bundleOf(
+                    tickerKey to stockName, displayNameKey to displayName,
+                    fundNameKey to fundName
+                )
             }
         }
     }

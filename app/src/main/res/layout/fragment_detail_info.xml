@@ -219,8 +219,8 @@
         app:layout_constraintTop_toTopOf="@id/pbr"
         tools:text="35.34" />
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/lineChart"
+    <com.github.mikephil.charting.charts.CandleStickChart
+        android:id="@+id/candleStickChart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -233,9 +233,9 @@
         layout="@layout/layout_loading"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/lineChart"
-        app:layout_constraintEnd_toEndOf="@id/lineChart"
-        app:layout_constraintStart_toStartOf="@id/lineChart"
-        app:layout_constraintTop_toTopOf="@id/lineChart" />
+        app:layout_constraintBottom_toBottomOf="@id/candleStickChart"
+        app:layout_constraintEnd_toEndOf="@id/candleStickChart"
+        app:layout_constraintStart_toStartOf="@id/candleStickChart"
+        app:layout_constraintTop_toTopOf="@id/candleStickChart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
