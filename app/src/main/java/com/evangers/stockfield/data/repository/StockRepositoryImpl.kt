@@ -3,6 +3,7 @@ package com.evangers.stockfield.data.repository
 import com.evangers.stockfield.data.api.StockFieldApi
 import com.evangers.stockfield.domain.model.ListResponseModel
 import com.evangers.stockfield.domain.model.StockModel
+import com.evangers.stockfield.domain.model.StockPriceModel
 import com.evangers.stockfield.domain.repository.StockRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -45,6 +46,37 @@ class StockRepositoryImpl @Inject constructor(
         keyword: String
     ): ListResponseModel<StockModel> {
         throw Exception("Not Ready")
+    }
+
+    override suspend fun getHistoryFromStock(
+        ticker: String,
+        page: Int,
+        perPage: Int?,
+        order: String
+    ): ListResponseModel<StockPriceModel> {
+        return withContext(Dispatchers.IO) {
+            val response = stockFieldApi.getHistoryFromStock(
+                ticker = ticker,
+                perPage = perPage,
+                page = page,
+                order = order
+            )
+
+            ListResponseModel(
+                totalCounts = response.totalCounts,
+                list = response.list.map {
+                    StockPriceModel(
+                        date = it.date,
+                        openPrice = it.openPrice,
+                        closePrice = it.closePrice,
+                        highPrice = it.highPrice,
+                        lowPrice = it.lowPrice,
+                        volume = it.volume
+                    )
+                }
+            )
+        }
+
     }
 
 }

@@ -46,4 +46,12 @@ interface StockFieldApi {
     suspend fun getStock(
         @Path(value = "ticker") ticker: String
     ): StockEntity
+
+    @GET("stocks/{ticker}/prices")
+    suspend fun getHistoryFromStock(
+        @Path(value = "ticker") ticker: String,
+        @Query(value = "order") order: String,
+        @Query(value = "page") page: Int,
+        @Query(value = "per_page") perPage: Int?
+    ) : ListResponseEntity<StockPriceEntity>
 }
