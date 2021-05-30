@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fund_detail_graph"
+    app:startDestination="@id/fundDetailFragment">
+
+    <fragment
+        android:id="@+id/fundDetailFragment"
+        android:name="com.evangers.stockfield.ui.stockdetail.FundDetailFragment"
+        android:label="FundDetailFragment"
+        tools:layout="@layout/fragment_fund_detail">
+
+        <argument
+            android:name="fundName"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="ticker"
+            app:argType="string"
+            app:nullable="false" />
+
+    </fragment>
+
+</navigation>
