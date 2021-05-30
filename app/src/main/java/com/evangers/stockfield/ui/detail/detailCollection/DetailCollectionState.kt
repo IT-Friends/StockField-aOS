@@ -18,6 +18,7 @@ class DetailCollectionState(
 ) : DetailCollectionStateBind {
 
     private val fundSet = sortedSetOf<FundModel>({ p0, p1 -> p0.id - p1.id })
+    var ticker = ""
 
     fun update(action: DetailCollectionAction) {
         when (action) {

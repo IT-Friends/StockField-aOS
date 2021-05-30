@@ -19,6 +19,7 @@ class DetailCollectionViewModel @Inject constructor(
     val liveData = MutableLiveData<DetailCollectionStateBind>(state)
 
     fun start(ticker: String) {
+        state.ticker = ticker
         getFunds(ticker)
     }
 
