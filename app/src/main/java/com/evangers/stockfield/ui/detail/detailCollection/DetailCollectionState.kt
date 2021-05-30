@@ -32,11 +32,8 @@ class DetailCollectionState(
             }
             is DetailCollectionAction.UpdateFundList -> {
                 fundTotalCount = action.total
-                val prevCount = fundSet.size
                 fundSet.addAll(action.list)
-                if (prevCount < fundSet.size) {
-                    fundList = Event(fundSet.toList())
-                }
+                fundList = Event(fundSet.toList())
             }
             is DetailCollectionAction.NavToFundDetail -> {
                 navToFundDetail = Event(ticker to action.fundName)
