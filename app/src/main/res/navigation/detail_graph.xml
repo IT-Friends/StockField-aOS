@@ -5,6 +5,8 @@
     android:id="@+id/detail_graph"
     app:startDestination="@id/detailFragment">
 
+    <include app:graph="@navigation/fund_detail_graph" />
+    
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.evangers.stockfield.ui.detail.DetailFragment"
@@ -27,6 +29,28 @@
             android:defaultValue=""
             app:argType="string"
             app:nullable="false" />
+
+
+        <action
+            android:id="@+id/actionDetailFragmentToFundDetailFragment"
+            app:destination="@id/fund_detail_graph"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+
+            <argument
+                android:name="fundName"
+                app:argType="string"
+                app:nullable="false" />
+
+            <argument
+                android:name="ticker"
+                app:argType="string"
+                app:nullable="false" />
+
+        </action>
+
 
         <fragment
             android:id="@+id/detailInfoFragment"
@@ -51,6 +75,7 @@
                 app:nullable="false" />
 
         </fragment>
+
 
     </fragment>
 

@@ -13,7 +13,9 @@ import com.evangers.stockfield.ui.util.debugLog
 import com.evangers.stockfield.ui.util.showDrawable
 import com.evangers.stockfield.ui.util.showUrl
 
-class FundCollectionAdapter : RecyclerView.Adapter<FundCollectionViewHolder>() {
+class FundCollectionAdapter constructor(
+    private val collectionClickListener: CollectionClickListener
+) : RecyclerView.Adapter<FundCollectionViewHolder>() {
     private val sortedList =
         SortedList(FundModel::class.java, object : SortedListAdapterCallback<FundModel>(this) {
             override fun compare(o1: FundModel, o2: FundModel): Int {
@@ -36,7 +38,7 @@ class FundCollectionAdapter : RecyclerView.Adapter<FundCollectionViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FundCollectionViewHolder, position: Int) {
-        holder.onBind(sortedList[position])
+        holder.onBind(sortedList[position], collectionClickListener)
     }
 
     override fun getItemCount(): Int {
@@ -55,9 +57,9 @@ class FundCollectionViewHolder constructor(
 
     private val binding = LayoutFundCollectionItemBinding.bind(itemView)
 
-    fun onBind(fundModel: FundModel) {
+    fun onBind(fundModel: FundModel, collectionClickListener: CollectionClickListener) {
         itemView.setOnClickListener {
-
+            collectionClickListener.onClickCollection(fundModel.name)
         }
         with(binding) {
             if (fundModel.companyIconUrl == "https://stock-field.com/images/ark.jpg") {

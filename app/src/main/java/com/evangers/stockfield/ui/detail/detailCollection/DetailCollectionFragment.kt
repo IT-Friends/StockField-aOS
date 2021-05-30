@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentDetailCollectionBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
+import com.evangers.stockfield.ui.detail.DetailActionListener
 import com.evangers.stockfield.ui.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailCollectionFragment @Inject constructor(
+    private val detailFragmentActionListener: DetailActionListener
 ) : StockFieldFragment(R.layout.fragment_detail_collection) {
 
     private val viewModel: DetailCollectionViewModel by viewModels()
@@ -30,7 +32,7 @@ class DetailCollectionFragment @Inject constructor(
     }
 
     override fun initUi() {
-        fundCollectionAdapter = FundCollectionAdapter()
+        fundCollectionAdapter = FundCollectionAdapter(viewModel)
         bindings.fundItemRecyclerView.let {
             it.layoutManager = LinearLayoutManager(requireContext())
             it.adapter = fundCollectionAdapter
@@ -50,6 +52,9 @@ class DetailCollectionFragment @Inject constructor(
                 state.fundList?.getValueIfNotHandled()?.let {
                     fundCollectionAdapter.replaceItem(it)
                 }
+                state.navToFundDetail?.getValueIfNotHandled()?.let { (ticker, fundName) ->
+                    detailFragmentActionListener.navToFundDetail(ticker, fundName)
+                }
             }
         })
     }
@@ -62,8 +67,9 @@ class DetailCollectionFragment @Inject constructor(
         private const val tickerKey = "tickerKey"
         fun newInstance(
             stockName: String,
+            detailFragmentActionListener: DetailActionListener
         ): DetailCollectionFragment {
-            return DetailCollectionFragment().apply {
+            return DetailCollectionFragment(detailFragmentActionListener).apply {
                 arguments = bundleOf(tickerKey to stockName)
             }
         }

@@ -8,13 +8,15 @@ interface DetailCollectionStateBind {
     var toast: Event<Int>?
     var fundList: Event<List<FundModel>>?
     var fundTotalCount: Int
+    var navToFundDetail: Event<Pair<String, String>>?
 }
 
 class DetailCollectionState(
     override var isLoading: Event<Boolean>? = null,
     override var toast: Event<Int>? = null,
     override var fundList: Event<List<FundModel>>? = null,
-    override var fundTotalCount: Int = 0
+    override var fundTotalCount: Int = 0,
+    override var navToFundDetail: Event<Pair<String, String>>? = null
 ) : DetailCollectionStateBind {
 
     private val fundSet = sortedSetOf<FundModel>({ p0, p1 -> p0.id - p1.id })
@@ -35,6 +37,9 @@ class DetailCollectionState(
                 if (prevCount < fundSet.size) {
                     fundList = Event(fundSet.toList())
                 }
+            }
+            is DetailCollectionAction.NavToFundDetail -> {
+                navToFundDetail = Event(ticker to action.fundName)
             }
         }
     }

@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-) : ViewModel() {
+) : ViewModel(), DetailActionListener {
 
     private val state = DetailState()
     val liveData = MutableLiveData<DetailStateBind>(state)
@@ -29,6 +29,11 @@ class DetailViewModel @Inject constructor(
 
     fun onBackPressed() {
         state.update(DetailAction.NavToBack)
+        liveData.postValue(state)
+    }
+
+    override fun navToFundDetail(ticker: String, fundName: String) {
+        state.update(DetailAction.NavToFundDetail(ticker, fundName))
         liveData.postValue(state)
     }
 

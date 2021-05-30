@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailCollectionViewModel @Inject constructor(
     private val getFundListFromTicker: GetFundListFromTicker
-) : ViewModel() {
+) : ViewModel(), CollectionClickListener {
 
     private val state = DetailCollectionState()
     val liveData = MutableLiveData<DetailCollectionStateBind>(state)
@@ -47,6 +47,11 @@ class DetailCollectionViewModel @Inject constructor(
 
     private fun setLoading(isLoading: Boolean) {
         state.update(DetailCollectionAction.UpdateLoadingState(isLoading))
+        liveData.postValue(state)
+    }
+
+    override fun onClickCollection(fundName: String) {
+        state.update(DetailCollectionAction.NavToFundDetail(fundName))
         liveData.postValue(state)
     }
 

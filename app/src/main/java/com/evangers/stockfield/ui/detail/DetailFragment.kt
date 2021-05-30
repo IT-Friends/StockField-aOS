@@ -36,7 +36,8 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
                 fromBundle.fundNameKey
             ),
             DetailCollectionFragment.newInstance(
-                fromBundle.tickerKey
+                fromBundle.tickerKey,
+                viewModel
             )
         )
     }
@@ -80,6 +81,14 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
             }
             state.isLoading?.getValueIfNotHandled()?.let { isLoading ->
                 binding.includedLoadingBar.loadingBarView.isVisible = isLoading
+            }
+            state.navToFundDetail?.getValueIfNotHandled()?.let { (ticker, fundName) ->
+                val action = DetailFragmentDirections.actionDetailFragmentToFundDetailFragment(
+                    fundName,
+                    ticker
+                )
+                findNavController().navigate(action)
+
             }
             state.navToBack?.getValueIfNotHandled()?.let {
                 findNavController().popBackStack()

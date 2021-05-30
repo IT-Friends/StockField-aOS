@@ -7,13 +7,15 @@ interface DetailStateBind {
     var isLoading: Event<Boolean>?
     var updateTitle: Event<Pair<String, String>>?
     var navToBack: Event<Unit>?
+    var navToFundDetail: Event<Pair<String, String>>?
 }
 
 class DetailState(
     override var toastMessage: Event<String>? = null,
     override var isLoading: Event<Boolean>? = null,
     override var updateTitle: Event<Pair<String, String>>? = null,
-    override var navToBack: Event<Unit>? = null
+    override var navToBack: Event<Unit>? = null,
+    override var navToFundDetail: Event<Pair<String, String>>? = null
 ) : DetailStateBind {
 
     fun update(action: DetailAction) {
@@ -30,7 +32,9 @@ class DetailState(
             is DetailAction.NavToBack -> {
                 navToBack = Event(Unit)
             }
-
+            is DetailAction.NavToFundDetail -> {
+                navToFundDetail = Event(action.ticker to action.fundName)
+            }
         }
     }
 }
