@@ -73,6 +73,7 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
         viewModel.liveData.observe(viewLifecycleOwner, { state ->
             state.updateTitle?.getValueIfNotHandled()?.let {
                 binding.toolbar.mainTitle.text = it.first
+                binding.toolbar.subTitle.isVisible = false
             }
             state.toastMessage?.getValueIfNotHandled()?.let {
                 showToast(it)
