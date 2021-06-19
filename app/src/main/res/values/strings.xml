@@ -7,6 +7,7 @@
     <string name="sharesTitle">Shares</string>
     <string name="weightTitle">Weight</string>
     <string name="closingPriceTitle">ClosingPrice</string>
+    <string name="dateTitle">Date</string>
 
     <string name="numberWithDollar">$ %1$s</string>
     <string name="numberWithPlus">+%1$s</string>
