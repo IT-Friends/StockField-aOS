@@ -1,5 +1,6 @@
 package com.evangers.stockfield.ui.stockdetail
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -37,6 +38,23 @@ class FundDetailFragment : StockFieldFragment(R.layout.fragment_fund_detail) {
         this.onBackPressedDispatcher { viewModel.onBackPressed() }
         with(binding) {
             toolbar.backButton.setOnClickListener { viewModel.onBackPressed() }
+            chart.axisLeft.run {
+                setDrawGridLines(false)
+                textColor = Color.WHITE
+            }
+            chart.axisRight.run {
+                isEnabled = false
+            }
+            // X 축
+            chart.xAxis.run {
+                textColor = Color.TRANSPARENT
+                setDrawAxisLine(false)
+                setDrawGridLines(false)
+                setAvoidFirstLastClipping(true)
+            } // 범례
+            chart.legend.run { isEnabled = false }
+
+
         }
     }
 
@@ -54,6 +72,16 @@ class FundDetailFragment : StockFieldFragment(R.layout.fragment_fund_detail) {
             }
             state.navToBack?.getValueIfNotHandled()?.let {
                 findNavController().popBackStack()
+            }
+            state.lineChartList?.getValueIfNotHandled()?.let {
+                binding.chart.apply {
+                    data = it
+                    description.isEnabled = false
+                    isHighlightPerDragEnabled = true
+                    requestDisallowInterceptTouchEvent(true)
+                    invalidate()
+                }
+
             }
         })
     }
