@@ -36,8 +36,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
-        android:id="@+id/fundTitle"
-        layout="@layout/layout_stocktable_title"
+        android:id="@+id/fundDetailTitle"
+        layout="@layout/layout_funddetail_table_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -47,15 +47,14 @@
         app:layout_constraintTop_toBottomOf="@id/guideLine" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fundRecyclerView"
+        android:id="@+id/fundHistoryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingHorizontal="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fundTitle"
-        tools:listitem="@layout/layout_stocktable_row" />
+        app:layout_constraintTop_toBottomOf="@id/fundDetailTitle"
+        tools:listitem="@layout/layout_funddetail_table_row" />
 
 
     <include
