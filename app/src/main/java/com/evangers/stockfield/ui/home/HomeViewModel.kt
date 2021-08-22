@@ -23,7 +23,9 @@ class HomeViewModel @Inject constructor(
     val liveData = MutableLiveData<HomeStateBind>(state)
 
     fun start() {
-        getCompanyList()
+        if(state.hasLoaded.not()) {
+            getCompanyList()
+        }
     }
 
     private fun getCompanyList() {

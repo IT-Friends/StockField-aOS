@@ -81,9 +81,9 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
 
     override fun initBinding() {
         viewModel.liveData.observe(viewLifecycleOwner, { state ->
-            state.companyList?.getValueIfNotHandled()?.let {
+            state.companyList?.getValue()?.let {
                 binding.companySpinner.apply {
-                    val adapter = ArrayAdapter<String>(
+                    val adapter = ArrayAdapter(
                         requireContext(),
                         R.layout.support_simple_spinner_dropdown_item,
                         it.map { it.name }
@@ -125,5 +125,6 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
     override fun onDestroyViewSf() {
         super.onDestroyViewSf()
         lifecycle.removeObserver(viewModel)
+        binding.fundViewpager.adapter = null
     }
 }

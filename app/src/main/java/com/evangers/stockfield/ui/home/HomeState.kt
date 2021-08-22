@@ -33,9 +33,12 @@ class HomeState(
 
     override val dateMap = mutableMapOf<Int, String>()
 
+    var hasLoaded = false
+
     fun update(action: HomeAction) {
         when (action) {
             is HomeAction.UpdateCompany -> {
+                hasLoaded = true
                 companyList = Event(action.companyList)
             }
             is HomeAction.UpdateCompanyFund -> {
