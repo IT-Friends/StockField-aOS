@@ -72,7 +72,6 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
             })
             fundPagerAdapter = FundPagerAdapter(childFragmentManager, lifecycle)
             fundViewpager.adapter = fundPagerAdapter
-            fundViewpager.offscreenPageLimit = 10
             TabLayoutMediator(fundTab, fundViewpager) { tab, position ->
                 tab.text = fundPagerAdapter.getFundName(position)
             }.attach()
@@ -93,9 +92,7 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
             }
             state.companyFundList?.let { fundPagerAdapter.replaceFundList(it) }
             if (fundPagerAdapter.replaceFragmentList(state.fragmentList)) {
-                binding.fundViewpager.postDelayed({
-                    binding.fundViewpager.setCurrentItem(state.currentFundTabPosition, false)
-                }, 100)
+                binding.fundViewpager.setCurrentItem(state.currentFundTabPosition, false)
             }
             state.toastMessage?.getValueIfNotHandled()?.let {
                 showToast(it)
