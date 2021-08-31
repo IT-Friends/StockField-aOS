@@ -7,8 +7,9 @@ import javax.inject.Inject
 class HistoryMapper @Inject constructor(
 ) : EntityMapper<HistoryEntity, HistoryModel> {
     override fun mapFromEntity(entity: HistoryEntity): HistoryModel {
+        val properText = Regex("\\d{4}-\\d{2}-\\d{2}").find(entity.date, 0)
         return HistoryModel(
-            date = entity.date,
+            date = properText?.value ?: "",
             shares = entity.shares,
             sharesDifference = entity.sharesDifference,
             weight = entity.weight,

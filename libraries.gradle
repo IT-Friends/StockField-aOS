@@ -18,7 +18,11 @@ ext {
             constraintlayout_version  : '2.0.4',
             fragment_version          : '1.3.0',
             lifecycle_version         : '2.3.0',
-            viewpager2_version        : '1.0.0'
+            viewpager2_version        : '1.0.0',
+
+            mpchart_version           : 'v3.1.0',
+            glide_version             : '4.12.0'
+
     ]
 
 
@@ -26,6 +30,10 @@ ext {
             moshiCodegen       : "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi_version}",
             hiltAndroidCompiler: "com.google.dagger:hilt-android-compiler:${versions.hilt_version}",
             hiltCompiler       : "androidx.hilt:hilt-compiler:${versions.hilt_viewmodel_version}"
+    ]
+
+    annotationList = [
+            glideCompiler: "com.github.bumptech.glide:compiler:${versions.glide_version}"
     ]
 
     androidxDependencies = [
@@ -57,6 +65,14 @@ ext {
 
     coroutinesDependencies = [
             coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines_version}"
+    ]
+
+    chart = [
+            MPChart: "com.github.PhilJay:MPAndroidChart:${versions.mpchart_version}"
+    ]
+
+    glide = [
+            glide: "com.github.bumptech.glide:glide:${versions.glide_version}"
     ]
 
 }

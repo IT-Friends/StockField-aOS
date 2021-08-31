@@ -21,6 +21,40 @@
         <item name="layout_constraintHorizontal_weight">4</item>
     </style>
 
+    <style name="DateHorizontalCell">
+        <item name="layout_constraintHorizontal_weight">2</item>
+    </style>
+
+    <style name="SharesHorizontalCell">
+        <item name="layout_constraintHorizontal_weight">4</item>
+    </style>
+
+    <style name="WeightHorizontalCell">
+        <item name="layout_constraintHorizontal_weight">2</item>
+    </style>
+
+    <style name="DateHorizontalCell.Title" parent="DateHorizontalCell">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/tableTitleFontSize</item>
+        <item name="android:textColor">@color/table_title</item>
+    </style>
+
+    <style name="SharesHorizontalCell.Title" parent="SharesHorizontalCell">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/tableTitleFontSize</item>
+        <item name="android:textColor">@color/table_title</item>
+    </style>
+
+    <style name="WeightHorizontalCell.Title" parent="WeightHorizontalCell">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/tableTitleFontSize</item>
+        <item name="android:textColor">@color/table_title</item>
+    </style>
+
+
     <style name="RankCell.Title" parent="RankCell">
         <item name="android:gravity">center</item>
         <item name="android:textStyle">bold</item>
@@ -74,6 +108,18 @@
     </style>
 
     <style name="ClosingPriceCell.Row" parent="ClosingPriceCell">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DateHorizontalCell.Row" parent="DateHorizontalCell">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="SharesHorizontalCell.Row" parent="SharesHorizontalCell">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WeightHorizontalCell.Row" parent="WeightHorizontalCell">
         <item name="android:gravity">center</item>
     </style>
 

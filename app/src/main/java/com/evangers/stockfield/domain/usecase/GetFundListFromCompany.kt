@@ -19,7 +19,7 @@ class GetFundListFromCompany @Inject constructor(
                     funds = response.list
                 )
             )
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
             emit(Response.Failure(e))
         }
 

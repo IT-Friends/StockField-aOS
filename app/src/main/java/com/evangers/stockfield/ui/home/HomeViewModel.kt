@@ -1,5 +1,6 @@
 package com.evangers.stockfield.ui.home
 
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,13 +17,15 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getCompanies: GetCompanies,
     private val getFundListFromCompany: GetFundListFromCompany
-) : ViewModel(), HomeController {
+) : ViewModel(), HomeController, LifecycleObserver {
 
-    private val homeState = HomeState()
-    val liveData = MutableLiveData<HomeStateBind>(homeState)
+    private val state = HomeState()
+    val liveData = MutableLiveData<HomeStateBind>(state)
 
     fun start() {
-        getCompanyList()
+        if(state.hasLoaded.not()) {
+            getCompanyList()
+        }
     }
 
     private fun getCompanyList() {
@@ -32,12 +35,12 @@ class HomeViewModel @Inject constructor(
             collectedData.collect {
                 when (it) {
                     is GetCompanies.Response.Success -> {
-                        homeState.update(HomeAction.UpdateCompany(it.companyList))
-                        liveData.postValue(homeState)
+                        state.update(HomeAction.UpdateCompany(it.companyList))
+                        liveData.postValue(state)
                     }
                     is GetCompanies.Response.Failure -> {
-                        homeState.update(HomeAction.ShowToast(it.exception.message.toString()))
-                        liveData.postValue(homeState)
+                        state.update(HomeAction.ShowToast(it.exception.message.toString()))
+                        liveData.postValue(state)
                     }
                 }
                 setLoading(false)
@@ -48,20 +51,20 @@ class HomeViewModel @Inject constructor(
     private fun getFundsFromCompany(companyTabSelectedIndex: Int) {
         viewModelScope.launch {
             setLoading(true)
-            val company = homeState.companyList?.getValue()?.get(companyTabSelectedIndex)
+            val company = state.companyList?.getValue()?.get(companyTabSelectedIndex)
             val companyId = company?.id ?: -1
             val collectedFunds =
                 getFundListFromCompany(GetFundListFromCompany.Request(companyId))
             collectedFunds.collect {
                 when (it) {
                     is GetFundListFromCompany.Response.Success -> {
-                        val action = HomeAction.UpdateCompanyFund(it.funds)
-                        homeState.update(action)
-                        liveData.postValue(homeState)
+                        val action = HomeAction.UpdateCompanyFund(this@HomeViewModel, it.funds)
+                        state.update(action)
+                        liveData.postValue(state)
                     }
                     is GetFundListFromCompany.Response.Failure -> {
-                        homeState.update(HomeAction.ShowToast(it.exception.message.toString()))
-                        liveData.postValue(homeState)
+                        state.update(HomeAction.ShowToast(it.exception.message.toString()))
+                        liveData.postValue(state)
                     }
                 }
                 setLoading(false)
@@ -71,20 +74,39 @@ class HomeViewModel @Inject constructor(
 
     fun onCompanyTabSelected(tabPosition: Int) {
         debugLog(tabPosition)
-        getFundsFromCompany(tabPosition)
+        if (state.currentSpinnerPosition != tabPosition) {
+            state.currentSpinnerPosition = tabPosition
+            getFundsFromCompany(tabPosition)
+        }
     }
 
     private fun setLoading(isLoading: Boolean) {
-        homeState.update(HomeAction.UpdateLoadingState(isLoading))
-        liveData.postValue(homeState)
+        state.update(HomeAction.UpdateLoadingState(isLoading))
+        liveData.postValue(state)
     }
 
-    override fun onDateUpdate(text: String) {
-        homeState.update(HomeAction.UpdateDate(text))
-        liveData.postValue(homeState)
+    override fun onDateUpdate(pair: Pair<Int, String>) {
+        state.update(HomeAction.UpdateDate(pair))
+        liveData.postValue(state)
+        displayDate()
     }
 
     override fun onUpdateLoadingState(isLoading: Boolean) {
         setLoading(isLoading)
+    }
+
+    override fun onStockClicked(ticker: String, displayName: String) {
+        state.update(HomeAction.NavToDetail(ticker, displayName))
+        liveData.postValue(state)
+    }
+
+    fun onFundTabSelected(position: Int?) {
+        state.currentFundTabPosition = position ?: 0
+        displayDate()
+    }
+
+    fun displayDate() {
+        state.update(HomeAction.DisplayDate(state.currentFundTabPosition))
+        liveData.postValue(state)
     }
 }

@@ -13,7 +13,7 @@ interface StockFieldApi {
         @Query(value = "date_to") dateTo: String? = null,
         @Query(value = "order") order: String = "ranking",
         @Query(value = "page") page: Int,
-        @Query(value = "per_page") perPage: Int,
+        @Query(value = "per_page") perPage: Int?,
     ): ListResponseEntity<FundHoldingComparisonEntity>
 
     @GET("companies")
@@ -25,16 +25,33 @@ interface StockFieldApi {
         @Query(value = "company_id") companyId: Int
     ): ListResponseEntity<FundEntity>
 
+    @GET("funds")
+    suspend fun getFundsFromTicker(
+        @Query(value = "attachments") attachments: Array<String> = arrayOf(
+            "company_name",
+            "company_icon_url"
+        ),
+        @Query(value = "following_tickers") followingTickers: Array<String>
+    ): ListResponseEntity<FundEntity>
+
     @GET("funds/{fundName}/fund_holdings/{ticker}/history")
     suspend fun getHistoryFromFund(
         @Path(value = "fundName") fundName: String,
         @Path(value = "ticker") ticker: String,
         @Query(value = "page") page: Int,
-        @Query(value = "per_page") perPage: Int
+        @Query(value = "per_page") perPage: Int?
     ): ListResponseEntity<HistoryEntity>
 
     @GET("stocks/{ticker}")
     suspend fun getStock(
         @Path(value = "ticker") ticker: String
     ): StockEntity
+
+    @GET("stocks/{ticker}/prices")
+    suspend fun getHistoryFromStock(
+        @Path(value = "ticker") ticker: String,
+        @Query(value = "order") order: String,
+        @Query(value = "page") page: Int,
+        @Query(value = "per_page") perPage: Int?
+    ) : ListResponseEntity<StockPriceEntity>
 }

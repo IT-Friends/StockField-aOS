@@ -4,9 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/homeFragment">
 
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.evangers.stockfield.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <fragment
+            android:id="@+id/fundHoldingsFragment"
+            android:name="com.evangers.stockfield.ui.fundholdings.FundHoldingsFragment"
+            tools:layout="@layout/fragment_fundholdings">
+
+            <argument
+                android:name="fundNameKey"
+                app:argType="string"
+                app:nullable="false" />
+        </fragment>
+
+        <action
+            android:id="@+id/actionHomeFragmentToDetailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+
+            <argument
+                android:name="tickerKey"
+                app:argType="string"
+                app:nullable="false" />
+            <argument
+                android:name="displayNameKey"
+                app:argType="string"
+                app:nullable="false" />
+            <argument
+                android:name="fundNameKey"
+                app:argType="string"
+                app:nullable="false" />
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.evangers.stockfield.ui.detail.DetailFragment"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="tickerKey"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="displayNameKey"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="fundNameKey"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+
+
+        <action
+            android:id="@+id/actionDetailFragmentToFundDetailFragment"
+            app:destination="@id/fundDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+
+            <argument
+                android:name="fundName"
+                app:argType="string"
+                app:nullable="false" />
+
+            <argument
+                android:name="ticker"
+                app:argType="string"
+                app:nullable="false" />
+
+        </action>
+
+
+        <fragment
+            android:id="@+id/detailInfoFragment"
+            android:name="com.evangers.stockfield.ui.detail.detailInfo.DetailInfoFragment"
+            tools:layout="@layout/fragment_detail_info">
+            <argument
+                android:name="tickerKey"
+                android:defaultValue=""
+                app:argType="string"
+                app:nullable="false" />
+
+            <argument
+                android:name="displayNameKey"
+                android:defaultValue=""
+                app:argType="string"
+                app:nullable="false" />
+
+            <argument
+                android:name="fundNameKey"
+                android:defaultValue=""
+                app:argType="string"
+                app:nullable="false" />
+
+        </fragment>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fundDetailFragment"
+        android:name="com.evangers.stockfield.ui.stockdetail.FundDetailFragment"
+        android:label="FundDetailFragment"
+        tools:layout="@layout/fragment_fund_detail">
+
+        <argument
+            android:name="fundName"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="ticker"
+            app:argType="string"
+            app:nullable="false" />
+
+    </fragment>
+
 
 </navigation>

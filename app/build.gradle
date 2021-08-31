@@ -31,6 +31,10 @@ android {
 
     buildTypes {
         release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -52,9 +56,12 @@ dependencies {
     implementation networkDependencies.values()
     implementation hiltDependencies.values()
     implementation coroutinesDependencies.values()
+    implementation chart.values()
+    implementation glide.values()
     kapt kaptList.values()
+    annotationProcessor annotationList.values()
 
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

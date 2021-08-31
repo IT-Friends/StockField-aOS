@@ -18,7 +18,9 @@ class FundHoldingsViewModel @Inject constructor(
     val liveData = MutableLiveData<FundHoldingsStateBind>(state)
 
     fun start(fundName: String) {
-        getFundHoldings(fundName)
+        if (state.fundHoldings == null) {
+            getFundHoldings(fundName)
+        }
     }
 
     private fun getFundHoldings(fundName: String) {

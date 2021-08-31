@@ -14,47 +14,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/homeMainView"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/fundTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/filterView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/companySpinner"
+        app:tabMode="scrollable" />
+
+    <include
+        android:id="@+id/filterView"
+        layout="@layout/layout_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/fundViewpager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fundTab" />
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/fundViewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/companySpinner">
+        app:layout_constraintTop_toBottomOf="@id/filterView" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/fundTab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@id/filterView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tabMode="scrollable" />
-
-        <include
-            android:id="@+id/filterView"
-            layout="@layout/layout_filter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/fundViewpager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fundTab" />
-
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/fundViewpager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/filterView" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
         android:id="@+id/includedLoadingBar"

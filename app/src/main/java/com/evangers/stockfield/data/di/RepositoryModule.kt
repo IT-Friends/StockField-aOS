@@ -7,8 +7,10 @@ import com.evangers.stockfield.data.mapper.FundMapper
 import com.evangers.stockfield.data.mapper.HistoryMapper
 import com.evangers.stockfield.data.repository.CompanyRepositoryImpl
 import com.evangers.stockfield.data.repository.FundRepositoryImpl
+import com.evangers.stockfield.data.repository.StockRepositoryImpl
 import com.evangers.stockfield.domain.repository.CompanyRepository
 import com.evangers.stockfield.domain.repository.FundRepository
+import com.evangers.stockfield.domain.repository.StockRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,6 +47,16 @@ object RepositoryModule {
         return CompanyRepositoryImpl(
             stockFieldApi,
             companyMapper
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideStockRepository(
+        stockFieldApi: StockFieldApi
+    ): StockRepository {
+        return StockRepositoryImpl(
+            stockFieldApi
         )
     }
 

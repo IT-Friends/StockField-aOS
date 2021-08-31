@@ -36,9 +36,25 @@ class FundRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getFundsFromTicker(ticker: String): ListResponseModel<FundModel> {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                stockFieldApi.getFundsFromTicker(followingTickers = arrayOf(ticker))
+            }
+            return ListResponseModel(
+                totalCounts = response.totalCounts,
+                list = response.list.map {
+                    fundMapper.mapFromEntity(it)
+                }
+            )
+        } catch (exception: Exception) {
+            throw exception
+        }
+    }
+
     override suspend fun getFundComparison(
         page: Int,
-        itemsPerPage: Int,
+        itemsPerPage: Int?,
         fund: String,
         dateFrom: String?,
         dateTo: String?,
@@ -64,7 +80,7 @@ class FundRepositoryImpl @Inject constructor(
 
     override suspend fun getFundHistory(
         page: Int,
-        itemsPerPage: Int,
+        itemsPerPage: Int?,
         fundName: String,
         ticker: String
     ): ListResponseModel<HistoryModel> {

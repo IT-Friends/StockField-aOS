@@ -10,9 +10,13 @@ interface FundRepository {
         companyIndex: Int
     ): ListResponseModel<FundModel>
 
+    suspend fun getFundsFromTicker(
+        ticker: String
+    ): ListResponseModel<FundModel>
+
     suspend fun getFundComparison(
         page: Int = 0,
-        itemsPerPage: Int = 30,
+        itemsPerPage: Int? = null,
         fund: String,
         dateFrom: String? = null,
         dateTo: String? = null,
@@ -21,9 +25,8 @@ interface FundRepository {
 
     suspend fun getFundHistory(
         page: Int = 0,
-        itemsPerPage: Int = 30,
+        itemsPerPage: Int? = null,
         fundName: String,
         ticker: String
     ): ListResponseModel<HistoryModel>
-
 }

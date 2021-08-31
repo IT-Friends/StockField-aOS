@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tableTitleView"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/transparent"
+    android:paddingHorizontal="8dp">
+
+    <TextView
+        android:id="@+id/dateField"
+        style="@style/DateHorizontalCell.Title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="@string/dateTitle"
+        app:layout_constraintEnd_toStartOf="@id/sharesField"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/sharesField"
+        style="@style/SharesHorizontalCell.Title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="@string/sharesTitle"
+        app:layout_constraintEnd_toStartOf="@id/weightField"
+        app:layout_constraintStart_toEndOf="@id/dateField" />
+
+    <TextView
+        android:id="@+id/weightField"
+        style="@style/WeightHorizontalCell.Title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="@string/weightTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sharesField" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
