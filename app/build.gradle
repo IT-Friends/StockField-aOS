@@ -58,6 +58,8 @@ dependencies {
     implementation coroutinesDependencies.values()
     implementation chart.values()
     implementation glide.values()
+    implementation 'com.google.android.gms:play-services-ads:20.3.0'
+
     kapt kaptList.values()
     annotationProcessor annotationList.values()
 
