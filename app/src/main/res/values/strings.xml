@@ -6,6 +6,8 @@
     <string name="admob_home_banner_unit_id">ca-app-pub-3621285827573653/5967001458</string>
 
 
+    <string name="backButtonForExit">\'뒤로\' 버튼을 한 번 더 누르면 종료됩니다.</string>
+
     <string name="rankTitle">Rank</string>
     <string name="tickerTitle">Ticker</string>
     <string name="sharesTitle">Shares</string>

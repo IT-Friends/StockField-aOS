@@ -10,9 +10,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentHomeBinding
+import com.evangers.stockfield.ui.base.NavRootController
+import com.evangers.stockfield.ui.base.NavRootControllerImpl
 import com.evangers.stockfield.ui.base.StockFieldFragment
 import com.evangers.stockfield.ui.home.adapter.FundPagerAdapter
 import com.evangers.stockfield.ui.util.debugLog
+import com.evangers.stockfield.ui.util.onBackPressedDispatcher
 import com.evangers.stockfield.ui.util.showShortToast
 import com.google.android.gms.ads.*
 import com.google.android.material.tabs.TabLayout
@@ -20,7 +23,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
+class HomeFragment : StockFieldFragment(R.layout.fragment_home),
+    NavRootController by NavRootControllerImpl() {
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var fundPagerAdapter: FundPagerAdapter
@@ -64,6 +68,9 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
 
     override fun initUi() {
         initialLayoutComplete = false
+        onBackPressedDispatcher {
+            onGlobalBackPressed(requireContext())
+        }
         binding.run {
             companySpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
