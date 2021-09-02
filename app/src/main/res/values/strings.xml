@@ -2,6 +2,9 @@
     <string name="app_name">StockField</string>
 <!--    <string name="api_base">http://13.209.134.1:8080/api/</string>-->
     <string name="api_base">http://test.stock-field.com/api/</string>
+    <string name="admob_app_id">ca-app-pub-3621285827573653~2548638804</string>
+    <string name="admob_home_banner_unit_id">ca-app-pub-3621285827573653/5967001458</string>
+
 
     <string name="rankTitle">Rank</string>
     <string name="tickerTitle">Ticker</string>

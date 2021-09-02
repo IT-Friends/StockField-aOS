@@ -1,9 +1,12 @@
 package com.evangers.stockfield.ui.util
 
 import android.util.Log
+import com.evangers.stockfield.BuildConfig
 
 fun debugLog(text: Any) {
-    Log.d("[StockField]", text.toString())
+    if(BuildConfig.DEBUG) {
+        Log.d("[StockField]", text.toString())
+    }
 }
 
 fun Float?.toText(): String {
