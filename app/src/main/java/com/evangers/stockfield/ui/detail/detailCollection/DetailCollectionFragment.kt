@@ -10,7 +10,7 @@ import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentDetailCollectionBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
 import com.evangers.stockfield.ui.detail.DetailActionListener
-import com.evangers.stockfield.ui.util.showToast
+import com.evangers.stockfield.ui.util.showShortToast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -44,7 +44,7 @@ class DetailCollectionFragment @Inject constructor(
             with(bindings) {
                 infoText.text = getString(R.string.etfHoldingsInfoFormat, state.fundTotalCount)
                 state.toast?.getValueIfNotHandled()?.let {
-                    showToast(getString(it))
+                    showShortToast(getString(it))
                 }
                 state.isLoading?.getValueIfNotHandled()?.let {
                     loadingBar.loadingBarView.isVisible = it

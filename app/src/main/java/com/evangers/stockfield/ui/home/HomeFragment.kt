@@ -13,7 +13,7 @@ import com.evangers.stockfield.databinding.FragmentHomeBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
 import com.evangers.stockfield.ui.home.adapter.FundPagerAdapter
 import com.evangers.stockfield.ui.util.debugLog
-import com.evangers.stockfield.ui.util.showToast
+import com.evangers.stockfield.ui.util.showShortToast
 import com.google.android.gms.ads.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -173,7 +173,7 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home) {
                 binding.fundViewpager.setCurrentItem(state.currentFundTabPosition, false)
             }
             state.toastMessage?.getValueIfNotHandled()?.let {
-                showToast(it)
+                showShortToast(it)
             }
             state.dateText?.let {
                 binding.filterView.dateInfo.text = it

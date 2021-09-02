@@ -4,7 +4,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 
-fun Fragment.showToast(msg: String) {
+fun Fragment.showShortToast(msg: String) {
     Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
 }
 

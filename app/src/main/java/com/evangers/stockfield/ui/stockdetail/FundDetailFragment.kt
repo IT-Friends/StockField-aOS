@@ -11,7 +11,7 @@ import com.evangers.stockfield.R
 import com.evangers.stockfield.databinding.FragmentFundDetailBinding
 import com.evangers.stockfield.ui.base.StockFieldFragment
 import com.evangers.stockfield.ui.util.onBackPressedDispatcher
-import com.evangers.stockfield.ui.util.showToast
+import com.evangers.stockfield.ui.util.showShortToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -71,7 +71,7 @@ class FundDetailFragment : StockFieldFragment(R.layout.fragment_fund_detail) {
                 binding.toolbar.subTitle.text = it.second
             }
             state.toastMessage?.getValueIfNotHandled()?.let {
-                showToast(it)
+                showShortToast(it)
             }
             state.isLoading?.getValueIfNotHandled()?.let { isLoading ->
                 binding.includedLoadingBar.loadingBarView.isVisible = isLoading

@@ -12,7 +12,7 @@ import com.evangers.stockfield.ui.detail.detailCollection.DetailCollectionFragme
 import com.evangers.stockfield.ui.detail.detailInfo.DetailInfoFragment
 import com.evangers.stockfield.ui.detail.detailPageAdapter.DetailPageAdapter
 import com.evangers.stockfield.ui.util.onBackPressedDispatcher
-import com.evangers.stockfield.ui.util.showToast
+import com.evangers.stockfield.ui.util.showShortToast
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -77,7 +77,7 @@ class DetailFragment : StockFieldFragment(R.layout.fragment_detail) {
                 binding.toolbar.subTitle.isVisible = false
             }
             state.toastMessage?.getValueIfNotHandled()?.let {
-                showToast(it)
+                showShortToast(it)
             }
             state.isLoading?.getValueIfNotHandled()?.let { isLoading ->
                 binding.includedLoadingBar.loadingBarView.isVisible = isLoading
