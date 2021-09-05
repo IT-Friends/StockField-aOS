@@ -17,6 +17,8 @@ interface HomeStateBind {
     var currentSpinnerPosition: Int
     var currentFundTabPosition: Int
     val dateMap: Map<Int, String>
+    var displayExitDialog: Boolean
+    var exitApp: Event<Unit>?
 }
 
 class HomeState(
@@ -28,7 +30,9 @@ class HomeState(
     override var isLoading: Event<Boolean>? = null,
     override var navToDetail: Event<Pair<String, String>>? = null,
     override var currentSpinnerPosition: Int = -1,
-    override var currentFundTabPosition: Int = 0
+    override var currentFundTabPosition: Int = 0,
+    override var displayExitDialog: Boolean = false,
+    override var exitApp: Event<Unit>? = null
 ) : HomeStateBind {
 
     override val dateMap = mutableMapOf<Int, String>()
@@ -65,6 +69,12 @@ class HomeState(
             }
             is HomeAction.DisplayDate -> {
                 dateText = dateMap[action.tabIndex]
+            }
+            is HomeAction.DisplayExitDialog -> {
+                displayExitDialog = action.show
+            }
+            is HomeAction.ExitApp -> {
+                exitApp = Event(Unit)
             }
         }
     }

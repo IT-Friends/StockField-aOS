@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.evangers.stockfield.domain.usecase.GetCompanies
 import com.evangers.stockfield.domain.usecase.GetFundListFromCompany
 import com.evangers.stockfield.ui.fundholdings.HomeController
-import com.evangers.stockfield.ui.util.debugLog
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -23,7 +22,7 @@ class HomeViewModel @Inject constructor(
     val liveData = MutableLiveData<HomeStateBind>(state)
 
     fun start() {
-        if(state.hasLoaded.not()) {
+        if (state.hasLoaded.not()) {
             getCompanyList()
         }
     }
@@ -106,6 +105,21 @@ class HomeViewModel @Inject constructor(
 
     fun displayDate() {
         state.update(HomeAction.DisplayDate(state.currentFundTabPosition))
+        liveData.postValue(state)
+    }
+
+    fun onBackPressed() {
+        if (state.displayExitDialog.not()) {
+            state.update(HomeAction.DisplayExitDialog(true))
+            liveData.postValue(state)
+        } else {
+            state.update(HomeAction.ExitApp)
+            liveData.postValue(state)
+        }
+    }
+
+    fun closeExitDialog() {
+        state.update(HomeAction.DisplayExitDialog(false))
         liveData.postValue(state)
     }
 }

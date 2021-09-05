@@ -16,4 +16,6 @@ sealed class HomeAction {
     class UpdateLoadingState(val isLoading: Boolean) : HomeAction()
     class NavToDetail(val ticker: String, val displayName: String) : HomeAction()
     class DisplayDate(val tabIndex: Int) : HomeAction()
+    class DisplayExitDialog(val show: Boolean) : HomeAction()
+    object ExitApp : HomeAction()
 }

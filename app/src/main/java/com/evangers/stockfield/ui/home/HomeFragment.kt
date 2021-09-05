@@ -14,10 +14,7 @@ import com.evangers.stockfield.ui.base.NavRootController
 import com.evangers.stockfield.ui.base.NavRootControllerImpl
 import com.evangers.stockfield.ui.base.StockFieldFragment
 import com.evangers.stockfield.ui.home.adapter.FundPagerAdapter
-import com.evangers.stockfield.ui.util.AppOpenManager
-import com.evangers.stockfield.ui.util.debugLog
-import com.evangers.stockfield.ui.util.onBackPressedDispatcher
-import com.evangers.stockfield.ui.util.showShortToast
+import com.evangers.stockfield.ui.util.*
 import com.google.android.gms.ads.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -34,6 +31,8 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home),
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adView: AdView
     private var initialLayoutComplete = false
+
+    private lateinit var exitDialog: ExitDialog
 
     @Inject
     lateinit var appOpenManager: AppOpenManager
@@ -75,8 +74,17 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home),
     override fun initUi() {
         initialLayoutComplete = false
         onBackPressedDispatcher {
-            onGlobalBackPressed(requireContext())
+            viewModel.onBackPressed()
         }
+        exitDialog = ExitDialog(requireContext(), object : PopupDialogListener {
+            override fun onExitButtonClicked() {
+                onGlobalBackPressed(requireContext())
+            }
+
+            override fun onReturnToAppClicked() {
+                viewModel.closeExitDialog()
+            }
+        })
         binding.run {
             companySpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
@@ -206,6 +214,11 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home),
                         fundName
                     )
                 findNavController().navigate(navAction)
+            }
+            exitDialog.isVisible = state.displayExitDialog
+            state.exitApp?.getValueIfNotHandled()?.let {
+                exitDialog.isVisible = false
+                onGlobalBackPressed(requireContext())
             }
         })
 

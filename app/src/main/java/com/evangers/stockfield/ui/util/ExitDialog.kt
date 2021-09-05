@@ -49,8 +49,12 @@ class ExitDialog(
             binding.exitAppButton.setOnClickListener {
                 listener?.onExitButtonClicked()
             }
-            setOnCancelListener { listener?.onExitButtonClicked() }
+            setOnCancelListener { listener?.onReturnToAppClicked() }
         }
+    }
+
+    override fun onBackPressed() {
+        listener?.onExitButtonClicked()
     }
 
     private fun initDialog() {
