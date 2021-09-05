@@ -29,8 +29,8 @@
 
     <color name="transparent">#00000000</color>
 
-    <color name="home_background">#22303d</color>
-    <color name="home_background_darker">#22303d</color>
+    <color name="home_background">#263747</color>
+    <color name="home_background_darker">#263747</color>
 
     <color name="filter_background">@color/home_background_darker</color>
     <color name="standard_date">@color/white</color>

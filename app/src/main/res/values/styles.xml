@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="colorPrimary">@color/home_background_darker</item>
+        <item name="colorPrimaryDark">@color/home_background_darker</item>
+        <item name="colorAccent">@color/home_background_darker</item>
+        <item name="android:statusBarColor">@color/home_background_darker</item>
+    </style>
+
     <style name="RankCell">
         <item name="layout_constraintHorizontal_weight">1.5</item>
     </style>
