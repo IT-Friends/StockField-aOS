@@ -2,6 +2,7 @@ package com.evangers.stockfield.ui.di
 
 import android.content.Context
 import com.evangers.stockfield.ui.util.AppOpenManager
+import com.evangers.stockfield.ui.util.FirebaseRemote
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,6 +20,13 @@ object UtilModule {
         @ApplicationContext appContext: Context
     ): AppOpenManager {
         return AppOpenManager(appContext as StockFieldApp)
+    }
+
+    @Singleton
+    @Provides
+    fun providesFirebaseRemoteConfig(
+    ): FirebaseRemote {
+        return FirebaseRemote()
     }
 
 }

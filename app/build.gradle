@@ -7,6 +7,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
 
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services' // remote config
 }
 
 apply from: '../libraries.gradle'
@@ -84,8 +85,14 @@ dependencies {
     implementation coroutinesDependencies.values()
     implementation chart.values()
     implementation glide.values()
-    implementation 'com.google.android.gms:play-services-ads:20.3.0'
-    implementation project(':nativetemplates')
+
+    implementation 'com.google.android.gms:play-services-ads:20.3.0' // admob
+    implementation project(':nativetemplates') // admob
+
+    implementation platform('com.google.firebase:firebase-bom:28.4.0') // remote config
+    implementation 'com.google.firebase:firebase-config-ktx'// remote config
+    implementation 'com.google.firebase:firebase-analytics-ktx'// remote config
+
 
     kapt kaptList.values()
     annotationProcessor annotationList.values()
