@@ -3,14 +3,27 @@ package com.evangers.stockfield.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.evangers.stockfield.ui.util.AppOpenManager
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
+    
+    @Inject
+    lateinit var appOpenManager: AppOpenManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        launchMainActivity()
+        appOpenManager.init()
+        appOpenManager.fetchAd(
+            onLoaded = {
+                launchMainActivity()
+            },
+            onLoadFailed = {
+                launchMainActivity()
+            }
+        )
     }
 
     private fun launchMainActivity() {

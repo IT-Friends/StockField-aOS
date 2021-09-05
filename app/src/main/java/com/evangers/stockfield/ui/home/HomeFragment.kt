@@ -14,6 +14,7 @@ import com.evangers.stockfield.ui.base.NavRootController
 import com.evangers.stockfield.ui.base.NavRootControllerImpl
 import com.evangers.stockfield.ui.base.StockFieldFragment
 import com.evangers.stockfield.ui.home.adapter.FundPagerAdapter
+import com.evangers.stockfield.ui.util.AppOpenManager
 import com.evangers.stockfield.ui.util.debugLog
 import com.evangers.stockfield.ui.util.onBackPressedDispatcher
 import com.evangers.stockfield.ui.util.showShortToast
@@ -21,6 +22,7 @@ import com.google.android.gms.ads.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : StockFieldFragment(R.layout.fragment_home),
@@ -32,6 +34,10 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home),
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adView: AdView
     private var initialLayoutComplete = false
+
+    @Inject
+    lateinit var appOpenManager: AppOpenManager
+
 
     private val adSize: AdSize
         get() {
@@ -177,6 +183,7 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home),
             }
             state.companyFundList?.let { fundPagerAdapter.replaceFundList(it) }
             if (fundPagerAdapter.replaceFragmentList(state.fragmentList)) {
+                appOpenManager.showAdIfAvailable(requireActivity())
                 binding.fundViewpager.setCurrentItem(state.currentFundTabPosition, false)
             }
             state.toastMessage?.getValueIfNotHandled()?.let {

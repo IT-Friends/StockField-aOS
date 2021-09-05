@@ -73,7 +73,6 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onCompanyTabSelected(tabPosition: Int) {
-        debugLog(tabPosition)
         if (state.currentSpinnerPosition != tabPosition) {
             state.currentSpinnerPosition = tabPosition
             getFundsFromCompany(tabPosition)
