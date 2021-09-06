@@ -57,6 +57,7 @@ local.properties
 .idea/jarRepositories.xml
 .idea/.name
 .idea/vcs.xml
+.idea/git_toolbox_prj.xml
 
 # plugin이 생성한 것으로 추정되는 파일들
 .idea/markdown-navigator
