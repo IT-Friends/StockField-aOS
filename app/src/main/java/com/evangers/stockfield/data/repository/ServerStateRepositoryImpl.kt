@@ -21,10 +21,10 @@ class ServerStateRepositoryImpl @Inject constructor(
         return suspendCoroutine { ct ->
             databaseReference.get().addOnSuccessListener { snapshot ->
                 val state = snapshot.getValue(ServerStateEntity::class.java)
-                val isOnMaintenance = state?.isOnMaintenance ?: false
+                val onMaintenance = state?.onMaintenance ?: false
                 val message = state?.message ?: ""
-                debugLog("state?.isOnMaintenance : ${state?.isOnMaintenance}, state?.message : ${state?.message}")
-                ct.resume(ServerState(isOnMaintenance, message))
+                debugLog("state?.onMaintenance : ${state?.onMaintenance}, state?.message : ${state?.message}")
+                ct.resume(ServerState(onMaintenance, message))
             }.addOnFailureListener {
                 debugLog("${it.message}")
                 ct.resumeWithException(it)

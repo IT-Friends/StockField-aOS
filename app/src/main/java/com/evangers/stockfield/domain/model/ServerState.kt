@@ -1,6 +1,6 @@
 package com.evangers.stockfield.domain.model
 
 data class ServerState(
-    val isOnMaintenance: Boolean = false,
+    val onMaintenance: Boolean = false,
     val message: String = ""
 )

@@ -4,6 +4,6 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class ServerStateEntity(
-    val isOnMaintenance: Boolean? = false,
+    val onMaintenance: Boolean? = null,
     val message: String? = ""
 )
