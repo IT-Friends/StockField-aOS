@@ -60,5 +60,11 @@ object RepositoryModule {
         )
     }
 
+    @Singleton
+    @Provides
+    fun provideServerStateRepository(
+    ): IServerStateRepository {
+        return ServerStateRepositoryImpl()
+    }
 
 }
