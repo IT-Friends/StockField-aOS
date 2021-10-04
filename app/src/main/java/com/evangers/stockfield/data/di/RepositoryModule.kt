@@ -5,12 +5,8 @@ import com.evangers.stockfield.data.mapper.CompanyMapper
 import com.evangers.stockfield.data.mapper.FundHoldingsMapper
 import com.evangers.stockfield.data.mapper.FundMapper
 import com.evangers.stockfield.data.mapper.HistoryMapper
-import com.evangers.stockfield.data.repository.CompanyRepositoryImpl
-import com.evangers.stockfield.data.repository.FundRepositoryImpl
-import com.evangers.stockfield.data.repository.StockRepositoryImpl
-import com.evangers.stockfield.domain.repository.CompanyRepository
-import com.evangers.stockfield.domain.repository.FundRepository
-import com.evangers.stockfield.domain.repository.StockRepository
+import com.evangers.stockfield.data.repository.*
+import com.evangers.stockfield.domain.repository.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -67,4 +63,11 @@ object RepositoryModule {
         return ServerStateRepositoryImpl()
     }
 
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(
+    ): IUserRepository {
+        return UserRepositoryImpl()
+    }
 }
