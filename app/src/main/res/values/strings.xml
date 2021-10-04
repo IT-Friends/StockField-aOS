@@ -10,6 +10,8 @@
     <string name="closeApp">앱 종료하기</string>
     <string name="returnToApp">돌아가기</string>
 
+    <string name="confirm">확인</string>
+    <string name="commonErrorMessage">알 수 없는 에러가 발생했습니다.</string>
 
     <string name="rankTitle">Rank</string>
     <string name="tickerTitle">Ticker</string>

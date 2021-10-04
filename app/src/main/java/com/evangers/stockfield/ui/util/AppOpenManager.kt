@@ -11,6 +11,8 @@ import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
 import java.util.*
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
 class AppOpenManager @Inject constructor(
@@ -32,23 +34,23 @@ class AppOpenManager @Inject constructor(
         hasAdBeenShown = false
     }
 
-    fun fetchAd(onLoaded: (() -> Unit)? = null, onLoadFailed: (() -> Unit)? = null) {
+    suspend fun fetchAd() = suspendCoroutine<Response> { ct ->
         debugLog("${this.javaClass.simpleName} fetchAd() hasBeenShown : $hasAdBeenShown, isShowingAd : $isShowingAd")
         if (isAdAvailable() || hasAdBeenShown) {
-            onLoadFailed?.invoke()
-            return
+            ct.resume(Response.LoadFailure)
+            return@suspendCoroutine
         }
         loadCallback = object : AppOpenAdLoadCallback() {
             override fun onAdLoaded(ad: AppOpenAd) {
                 debugLog("${this@AppOpenManager.javaClass.simpleName} adLoaded")
                 appOpenAd = ad
                 loadTime = Date().time
-                onLoaded?.invoke()
+                ct.resume(Response.LoadSuccess)
             }
 
             override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                 debugLog("${this.javaClass.simpleName} adFailed ${loadAdError.message}")
-                onLoadFailed?.invoke()
+                ct.resume(Response.LoadFailure)
             }
         }
 
@@ -89,8 +91,12 @@ class AppOpenManager @Inject constructor(
                 }
             appOpenAd?.fullScreenContentCallback = fullScreenContentCallback
             appOpenAd?.show(activity)
-        } else {
-            fetchAd()
         }
     }
+
+    sealed class Response {
+        object LoadSuccess : Response()
+        object LoadFailure : Response()
+    }
+
 }
