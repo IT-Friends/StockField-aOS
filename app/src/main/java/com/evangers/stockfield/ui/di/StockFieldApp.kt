@@ -20,9 +20,8 @@ class StockFieldApp : Application() {
         super.onCreate()
         FirebaseApp.initializeApp(this)
         MobileAds.initialize(this) {}
-        val job = CoroutineScope(Dispatchers.Default).launch {
+        CoroutineScope(Dispatchers.Default).launch {
             setInitOpenTime(System.currentTimeMillis())
         }
-        job.cancel()
     }
 }
