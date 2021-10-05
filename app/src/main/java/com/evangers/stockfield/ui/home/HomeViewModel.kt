@@ -8,6 +8,7 @@ import com.evangers.stockfield.domain.usecase.GetCompanies
 import com.evangers.stockfield.domain.usecase.GetFundListFromCompany
 import com.evangers.stockfield.ui.fundholdings.HomeController
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,7 +29,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getCompanyList() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             setLoading(true)
             val collectedData = getCompanies(GetCompanies.Request())
             collectedData.collect {
@@ -48,7 +49,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getFundsFromCompany(companyTabSelectedIndex: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             setLoading(true)
             val company = state.companyList?.getValue()?.get(companyTabSelectedIndex)
             val companyId = company?.id ?: -1
