@@ -1,5 +1,6 @@
 package com.evangers.stockfield.data.repository
 
+import com.evangers.stockfield.data.util.SharedPreference
 import com.evangers.stockfield.domain.repository.IUserRepository
 import com.evangers.stockfield.domain.throwables.NoTokenException
 import com.evangers.stockfield.ui.util.debugLog
@@ -11,6 +12,7 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class UserRepositoryImpl @Inject constructor(
+    private val sharedPreference: SharedPreference
 ) : IUserRepository {
     override suspend fun getToken(): String {
         return suspendCoroutine { ct ->
@@ -25,5 +27,13 @@ class UserRepositoryImpl @Inject constructor(
             }
             firebaseAppCheck.installAppCheckProviderFactory(SafetyNetAppCheckProviderFactory.getInstance())
         }
+    }
+
+    override fun setInitialOpenTime(time: Long) {
+        sharedPreference.initialOpen = time
+    }
+
+    override fun getInitialOpenTime(): Long {
+        return sharedPreference.initialOpen
     }
 }
