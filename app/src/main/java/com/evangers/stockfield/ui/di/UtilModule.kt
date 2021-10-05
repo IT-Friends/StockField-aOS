@@ -1,6 +1,7 @@
 package com.evangers.stockfield.ui.di
 
 import android.content.Context
+import com.evangers.stockfield.domain.usecase.HasUsedOverHoneymoon
 import com.evangers.stockfield.ui.util.AppOpenManager
 import com.evangers.stockfield.ui.util.FirebaseRemote
 import dagger.Module
@@ -17,9 +18,15 @@ object UtilModule {
     @Singleton
     @Provides
     fun provideAppOpenManager(
-        @ApplicationContext appContext: Context
+        @ApplicationContext appContext: Context,
+        firebaseRemote: FirebaseRemote,
+        hasUsedOverHoneymoon: HasUsedOverHoneymoon
     ): AppOpenManager {
-        return AppOpenManager(appContext as StockFieldApp)
+        return AppOpenManager(
+            appContext as StockFieldApp,
+            firebaseRemote,
+            hasUsedOverHoneymoon
+        )
     }
 
     @Singleton

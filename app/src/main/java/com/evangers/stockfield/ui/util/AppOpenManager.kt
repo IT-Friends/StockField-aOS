@@ -3,12 +3,15 @@ package com.evangers.stockfield.ui.util
 import android.app.Activity
 import android.app.Application
 import com.evangers.stockfield.R
+import com.evangers.stockfield.domain.usecase.HasUsedOverHoneymoon
+import com.evangers.stockfield.ui.util.FirebaseRemote.Companion.honeymoon_period
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
+import com.google.firebase.remoteconfig.ktx.get
 import java.util.*
 import javax.inject.Inject
 import kotlin.coroutines.resume
@@ -16,7 +19,9 @@ import kotlin.coroutines.suspendCoroutine
 
 
 class AppOpenManager @Inject constructor(
-    private val stockFieldApp: Application
+    private val stockFieldApp: Application,
+    private val firebaseRemote: FirebaseRemote,
+    private val hasUsedOverHoneymoon: HasUsedOverHoneymoon
 ) {
 
     private var appOpenAd: AppOpenAd? = null
@@ -29,9 +34,22 @@ class AppOpenManager @Inject constructor(
     private val adRequest: AdRequest
         get() = AdRequest.Builder().build()
 
+    private var isOpenAdAvailableUser = false
 
-    fun init() {
+    suspend fun init() {
         hasAdBeenShown = false
+        val honeyMoonDay = firebaseRemote.config[honeymoon_period].asLong()
+        debugLog("honeyMoonDay : $honeyMoonDay")
+        val result = hasUsedOverHoneymoon.invoke(honeyMoonDay)
+        when (result) {
+            is HasUsedOverHoneymoon.Response.Success -> {
+                isOpenAdAvailableUser = true
+            }
+            is HasUsedOverHoneymoon.Response.Failure -> {
+                isOpenAdAvailableUser = false
+            }
+
+        }
     }
 
     suspend fun fetchAd() = suspendCoroutine<Response> { ct ->
@@ -67,7 +85,7 @@ class AppOpenManager @Inject constructor(
     }
 
     private fun isAdAvailable(): Boolean {
-        return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4)
+        return isOpenAdAvailableUser && appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4)
     }
 
     fun showAdIfAvailable(activity: Activity) {
