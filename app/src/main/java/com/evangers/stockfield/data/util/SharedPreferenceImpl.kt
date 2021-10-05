@@ -6,13 +6,13 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 class SharedPreferenceImpl @Inject constructor(
-    private val sharedPreferences: SharedPreferences
+    sharedPreferences: SharedPreferences
 ) : SharedPreference {
     companion object {
         private const val keyInitialOpen = "keyInitialOpen"
     }
 
-    override var initialOpen: Long by LongPreference(sharedPreferences, keyInitialOpen, 0L)
+    override var initialOpen: Long by LongPreference(sharedPreferences, keyInitialOpen, Long.MAX_VALUE)
 }
 
 class BooleanPreference(
