@@ -7,7 +7,7 @@ class SetInitOpenTime @Inject constructor(
     private val userRepository: IUserRepository
 ) : SuspendUseCase<Long, Unit> {
     override suspend fun invoke(initTimeInMille: Long) {
-        if (userRepository.getInitialOpenTime() <= 0L) {
+        if (userRepository.getInitialOpenTime() == Long.MAX_VALUE) {
             userRepository.setInitialOpenTime(initTimeInMille)
         }
     }
