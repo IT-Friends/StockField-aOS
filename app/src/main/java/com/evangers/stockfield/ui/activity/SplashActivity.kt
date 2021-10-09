@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.evangers.stockfield.R
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 
@@ -22,13 +23,17 @@ class SplashActivity : AppCompatActivity() {
 
     private fun initBinding() {
         viewModel.liveData.observe(this, { state ->
+            FirebaseCrashlytics.getInstance().recordException(Throwable("app-14"))
             state.navToMainActivity?.getValueIfNotHandled()?.let {
+                FirebaseCrashlytics.getInstance().recordException(Throwable("app-15"))
                 launchMainActivity()
             }
             state.showAlertDialog?.getValueIfNotHandled()?.let {
+                FirebaseCrashlytics.getInstance().recordException(Throwable("app-16"))
                 alertView(it)
             }
             state.showUnknownErrorAlertDialog?.getValueIfNotHandled()?.let {
+                FirebaseCrashlytics.getInstance().recordException(Throwable("app-17"))
                 alertView(getString(R.string.commonErrorMessage))
             }
         })
