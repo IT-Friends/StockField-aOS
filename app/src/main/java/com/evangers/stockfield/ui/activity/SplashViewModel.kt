@@ -35,11 +35,19 @@ class SplashViewModel @Inject constructor(
 
     fun start() {
         viewModelScope.launch(Dispatchers.IO + handler) {
+            val serverLoadingJob = launch {
+                showServerCheckingStatus()
+            }
             checkServerState.invoke(Unit)
+            val dataLoadingJob = launch {
+                serverLoadingJob.cancel()
+                showDataCheckingStatus()
+            }
             appOpenManager.init()
             val response = withContext(Dispatchers.Main) {
                 appOpenManager.fetchAd() // 메인쓰레드에서 돌려야 됨
             }
+            dataLoadingJob.cancel()
             when (response) {
                 is AppOpenManager.Response.LoadSuccess,
                 is AppOpenManager.Response.LoadFailure -> { // 오픈 광고 못 불러와도 시작하도록 함
@@ -47,6 +55,22 @@ class SplashViewModel @Inject constructor(
                     liveData.postValue(state)
                 }
             }
+        }
+    }
+
+    private suspend fun showServerCheckingStatus() {
+        while (true) {
+            state.update(SplashAction.ShowServerCheckingMessage)
+            liveData.postValue(state)
+            delay(500L)
+        }
+    }
+
+    private suspend fun showDataCheckingStatus() {
+        while (true) {
+            state.update(SplashAction.ShowDataCheckingMessage)
+            liveData.postValue(state)
+            delay(500L)
         }
     }
 

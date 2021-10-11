@@ -35,6 +35,22 @@ class SplashActivity : AppCompatActivity() {
             state.showUnknownErrorAlertDialog?.getValueIfNotHandled()?.let {
                 alertView(getString(R.string.commonErrorMessage))
             }
+            state.showServerLoadingMessage?.getValueIfNotHandled()?.let {
+                var dot = ""
+                for (i in 0..it) {
+                    dot += ". "
+                }
+                val text = "${getString(R.string.checkingServerState)}$dot"
+                binding.loadingStatus.text = text
+            }
+            state.showDataLoadingMessage?.getValueIfNotHandled()?.let {
+                var dot = ""
+                for (i in 0..it) {
+                    dot += ". "
+                }
+                val text = "${getString(R.string.loadingData)}$dot"
+                binding.loadingStatus.text = text
+            }
         })
     }
 
