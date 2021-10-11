@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.evangers.stockfield.R
+import com.evangers.stockfield.databinding.ActivitySplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 
@@ -14,8 +15,11 @@ import kotlinx.coroutines.*
 class SplashActivity : AppCompatActivity() {
     private val viewModel: SplashViewModel by viewModels()
 
+    lateinit var binding: ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         viewModel.start()
         initBinding()
     }
@@ -30,6 +34,22 @@ class SplashActivity : AppCompatActivity() {
             }
             state.showUnknownErrorAlertDialog?.getValueIfNotHandled()?.let {
                 alertView(getString(R.string.commonErrorMessage))
+            }
+            state.showServerLoadingMessage?.getValueIfNotHandled()?.let {
+                var dot = ""
+                for (i in 0..it) {
+                    dot += ". "
+                }
+                val text = "${getString(R.string.checkingServerState)}$dot"
+                binding.loadingStatus.text = text
+            }
+            state.showDataLoadingMessage?.getValueIfNotHandled()?.let {
+                var dot = ""
+                for (i in 0..it) {
+                    dot += ". "
+                }
+                val text = "${getString(R.string.loadingData)}$dot"
+                binding.loadingStatus.text = text
             }
         })
     }
