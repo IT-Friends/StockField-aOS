@@ -1,3 +1,48 @@
 <resources>
     <string name="app_name">StockField</string>
+    <string name="api_base">https://stock-field.com/api/</string>
+    <string name="admob_app_id">ca-app-pub-3621285827573653~2548638804</string>
+    <string name="admob_home_banner_unit_id">ca-app-pub-3621285827573653/5967001458</string>
+    <string name="admob_open_unit_id">ca-app-pub-3621285827573653/9980314370</string>
+    <string name="admob_close_unit_id">ca-app-pub-3621285827573653/8424524271</string>
+
+
+    <string name="closeApp">앱 종료하기</string>
+    <string name="returnToApp">돌아가기</string>
+
+    <string name="confirm">확인</string>
+    <string name="commonErrorMessage">알 수 없는 에러가 발생했습니다.</string>
+
+    <string name="rankTitle">Rank</string>
+    <string name="tickerTitle">Ticker</string>
+    <string name="sharesTitle">Shares</string>
+    <string name="weightTitle">Weight</string>
+    <string name="closingPriceTitle">ClosingPrice</string>
+    <string name="dateTitle">Date</string>
+
+    <string name="numberWithDollar">$ %1$s</string>
+    <string name="numberWithPlus">+%1$s</string>
+    <string name="numberWithPercent">%1$s %%</string>
+    <string name="closingPriceIncreaseFormat">+%1$s(%2$s%%)</string>
+    <string name="closingPriceDecreaseFormat">%1$s(%2$s%%)</string>
+    <string name="dateFormat">* %1$s 기준</string>
+    <string name="filter">filter</string>
+
+    <string name="moveToBack">뒤로가기</string>
+    <string name="highestPrice_52">52주 최고가</string>
+    <string name="lowestPrice_52">52주 최저가</string>
+    <string name="sector">사업 분야</string>
+    <string name="industry">주요 산업</string>
+    <string name="totalPrice">시가 총액</string>
+    <string name="PER">PER</string>
+    <string name="ROE">ROE</string>
+    <string name="PBR">PBR</string>
+
+    <string name="basicInfo">기본 정보</string>
+    <string name="fundCollection">펀드 모아보기</string>
+
+    <string name="failToLoading">데이터를 불러오는데 실패했습니다.</string>
+    <string name="etfHoldingsInfoFormat">Stockfield에서 제공하는 ETF중 %1$d곳에서 보유중입니다.</string>
+
+    <string name="fundImageDescription">Fund Image</string>
 </resources>

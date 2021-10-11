@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="colorPrimary">@color/home_background_darker</item>
+        <item name="colorPrimaryDark">@color/home_background_darker</item>
+        <item name="colorAccent">@color/home_background_darker</item>
+        <item name="android:statusBarColor">@color/home_background_darker</item>
+    </style>
+
+    <style name="RankCell">
+        <item name="layout_constraintHorizontal_weight">1.5</item>
+    </style>
+
+    <style name="TickerCell">
+        <item name="layout_constraintHorizontal_weight">2</item>
+    </style>
+
+    <style name="SharesCell">
+        <item name="layout_constraintHorizontal_weight">4</item>
+    </style>
+
+    <style name="WeightCell">
+        <item name="layout_constraintHorizontal_weight">2</item>
+    </style>
+
+    <style name="ClosingPriceCell">
+        <item name="layout_constraintHorizontal_weight">4</item>
+    </style>
+
+    <style name="DateHorizontalCell">
+        <item name="layout_constraintHorizontal_weight">2</item>
+    </style>
+
+    <style name="SharesHorizontalCell">
+        <item name="layout_constraintHorizontal_weight">4</item>
+    </style>
+
+    <style name="WeightHorizontalCell">
+        <item name="layout_constraintHorizontal_weight">2</item>
+    </style>
+
+    <style name="DateHorizontalCell.Title" parent="DateHorizontalCell">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/tableTitleFontSize</item>
+        <item name="android:textColor">@color/table_title</item>
+    </style>
+
+    <style name="SharesHorizontalCell.Title" parent="SharesHorizontalCell">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/tableTitleFontSize</item>
+        <item name="android:textColor">@color/table_title</item>
+    </style>
+
+    <style name="WeightHorizontalCell.Title" parent="WeightHorizontalCell">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/tableTitleFontSize</item>
+        <item name="android:textColor">@color/table_title</item>
+    </style>
+
+
+    <style name="RankCell.Title" parent="RankCell">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/tableTitleFontSize</item>
+        <item name="android:textColor">@color/table_title</item>
+    </style>
+
+    <style name="TickerCell.Title" parent="TickerCell">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/tableTitleFontSize</item>
+        <item name="android:textColor">@color/table_title</item>
+    </style>
+
+    <style name="SharesCell.Title" parent="SharesCell">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/tableTitleFontSize</item>
+        <item name="android:textColor">@color/table_title</item>
+    </style>
+
+    <style name="WeightCell.Title" parent="WeightCell">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/tableTitleFontSize</item>
+        <item name="android:textColor">@color/table_title</item>
+    </style>
+
+    <style name="ClosingPriceCell.Title" parent="ClosingPriceCell">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/tableTitleFontSize</item>
+        <item name="android:textColor">@color/table_title</item>
+    </style>
+
+
+    <style name="RankCell.Row" parent="RankCell">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TickerCell.Row" parent="TickerCell">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="SharesCell.Row" parent="SharesCell">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WeightCell.Row" parent="WeightCell">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ClosingPriceCell.Row" parent="ClosingPriceCell">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DateHorizontalCell.Row" parent="DateHorizontalCell">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="SharesHorizontalCell.Row" parent="SharesHorizontalCell">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WeightHorizontalCell.Row" parent="WeightHorizontalCell">
+        <item name="android:gravity">center</item>
+    </style>
+
+
+</resources>

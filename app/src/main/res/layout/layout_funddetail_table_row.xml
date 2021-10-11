@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tableRowView"
+
+    android:layout_width="match_parent"
+    android:layout_height="28dp"
+    android:background="@color/home_background_darker"
+    android:paddingHorizontal="8dp">
+
+
+    <TextView
+        android:id="@+id/dateContent"
+        style="@style/DateHorizontalCell.Row"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/row_content"
+        app:layout_constraintEnd_toStartOf="@id/sharesField"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="2021-02-12" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sharesField"
+        style="@style/SharesHorizontalCell.Row"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toStartOf="@id/weightField"
+        app:layout_constraintStart_toEndOf="@id/dateContent">
+
+        <TextView
+            android:id="@+id/sharesContent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:textColor="@color/row_content"
+            app:layout_constraintEnd_toStartOf="@id/sharesDifference"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="2,343,231" />
+
+        <TextView
+            android:id="@+id/sharesDifference"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="start|center_vertical"
+            android:paddingStart="4dp"
+            android:paddingEnd="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/sharesContent"
+            tools:text="+213" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/weightField"
+        style="@style/WeightHorizontalCell.Row"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sharesField">
+
+        <TextView
+            android:id="@+id/weightContent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:textColor="@color/row_content"
+            app:layout_constraintEnd_toStartOf="@id/weightDifference"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="4.56%" />
+
+        <TextView
+            android:id="@+id/weightDifference"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="start|center_vertical"
+            android:paddingStart="4dp"
+            android:paddingEnd="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/weightContent"
+            tools:text="+0.3%" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
