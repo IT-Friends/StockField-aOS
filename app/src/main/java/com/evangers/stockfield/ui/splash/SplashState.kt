@@ -1,4 +1,4 @@
-package com.evangers.stockfield.ui.activity
+package com.evangers.stockfield.ui.splash
 
 import com.evangers.stockfield.ui.base.Event
 
