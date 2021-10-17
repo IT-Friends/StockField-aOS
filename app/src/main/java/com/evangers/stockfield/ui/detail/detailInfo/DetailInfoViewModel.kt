@@ -28,7 +28,7 @@ class DetailInfoViewModel @Inject constructor(
 
     fun start(ticker: String, fundName: String) {
         getDetail(ticker)
-        getHistory(ticker, 0)
+        getHistory(ticker, 1)
     }
 
     private fun getDetail(ticker: String) {

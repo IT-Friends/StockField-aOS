@@ -26,7 +26,7 @@ class FundDetailViewModel @Inject constructor(
 
     private fun getStockHistoryFromFund(ticker: String, fundName: String) {
         viewModelScope.launch {
-            getFundHistoryWithStock.invoke(GetFundHistoryWithStock.Request(0, ticker, fundName))
+            getFundHistoryWithStock.invoke(GetFundHistoryWithStock.Request(1, ticker, fundName))
                 .collect {
                     withContext(Dispatchers.IO) {
                         when (it) {
