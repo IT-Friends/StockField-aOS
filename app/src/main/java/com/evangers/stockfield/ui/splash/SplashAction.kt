@@ -1,4 +1,4 @@
-package com.evangers.stockfield.ui.activity
+package com.evangers.stockfield.ui.splash
 
 sealed class SplashAction {
     object NavToMainActivity : SplashAction()

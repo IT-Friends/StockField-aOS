@@ -1,33 +1,48 @@
-package com.evangers.stockfield.ui.activity
+package com.evangers.stockfield.ui.splash
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.evangers.stockfield.R
-import com.evangers.stockfield.databinding.ActivitySplashBinding
+import com.evangers.stockfield.databinding.FragmentSplashBinding
+import com.evangers.stockfield.ui.base.NavRootController
+import com.evangers.stockfield.ui.base.NavRootControllerImpl
+import com.evangers.stockfield.ui.base.StockFieldFragment
+import com.evangers.stockfield.ui.util.onBackPressedDispatcher
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
-
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class SplashActivity : AppCompatActivity() {
+class SplashFragment @Inject constructor(
+): StockFieldFragment(R.layout.fragment_splash),
+    NavRootController by NavRootControllerImpl() {
+
     private val viewModel: SplashViewModel by viewModels()
 
-    lateinit var binding: ActivitySplashBinding
+    lateinit var binding: FragmentSplashBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySplashBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        viewModel.start()
+        initUi()
         initBinding()
+        viewModel.start()
     }
 
-    private fun initBinding() {
+
+    override fun bindView(view: View) {
+        binding = FragmentSplashBinding.bind(view)
+    }
+
+    override fun initUi() {
+    }
+
+    override fun initBinding() {
         viewModel.liveData.observe(this, { state ->
             state.navToMainActivity?.getValueIfNotHandled()?.let {
-                launchMainActivity()
+                val action = SplashFragmentDirections.actionSplashFragmentToHomeFragment()
+                findNavController().navigate(action)
             }
             state.showAlertDialog?.getValueIfNotHandled()?.let {
                 alertView(it)
@@ -54,24 +69,12 @@ class SplashActivity : AppCompatActivity() {
         })
     }
 
-    private fun launchMainActivity() {
-        val intent = Intent(this@SplashActivity, MainActivity::class.java).apply {
-            data = intent.data
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-            intent.extras
-                .takeIf { it != null }
-                ?.also { putExtras(it) }
-        }
-        startActivity(intent)
-        finish()
-    }
-
     private fun alertView(message: String) {
-        AlertDialog.Builder(this@SplashActivity)
+        AlertDialog.Builder(requireContext())
             .setCancelable(false)
             .setMessage(message)
             .setPositiveButton(R.string.confirm) { dialog, i ->
-                this@SplashActivity.finish()
+                requireActivity().finish()
                 dialog.dismiss()
             }.show()
     }
