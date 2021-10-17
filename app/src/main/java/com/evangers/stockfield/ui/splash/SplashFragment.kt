@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashFragment @Inject constructor(
-): StockFieldFragment(R.layout.fragment_splash),
+) : StockFieldFragment(R.layout.fragment_splash),
     NavRootController by NavRootControllerImpl() {
 
     private val viewModel: SplashViewModel by viewModels()
@@ -36,6 +36,8 @@ class SplashFragment @Inject constructor(
     }
 
     override fun initUi() {
+        onBackPressedDispatcher {
+        }
     }
 
     override fun initBinding() {
