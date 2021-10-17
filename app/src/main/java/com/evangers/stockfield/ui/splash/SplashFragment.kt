@@ -75,7 +75,7 @@ class SplashFragment @Inject constructor(
         AlertDialog.Builder(requireContext())
             .setCancelable(false)
             .setMessage(message)
-            .setPositiveButton(R.string.confirm) { dialog, i ->
+            .setPositiveButton(R.string.confirm) { dialog, _ ->
                 requireActivity().finish()
                 dialog.dismiss()
             }.show()
