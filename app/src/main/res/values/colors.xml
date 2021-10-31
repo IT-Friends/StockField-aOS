@@ -38,6 +38,8 @@
     <color name="table_title">#757575</color>
     <color name="row_content">@color/white</color>
 
+
+    <color name="brand_new">#E3E039</color>
     <color name="increasing">#e34439</color>
     <color name="decreasing">#2f8bd0</color>
     <color name="stable">#727272</color>

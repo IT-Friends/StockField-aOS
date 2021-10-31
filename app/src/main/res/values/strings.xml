@@ -26,6 +26,7 @@
     <string name="numberWithDollar">$ %1$s</string>
     <string name="numberWithPlus">+%1$s</string>
     <string name="numberWithPercent">%1$s %%</string>
+    <string name="brand_new">NEW</string>
     <string name="closingPriceIncreaseFormat">+%1$s(%2$s%%)</string>
     <string name="closingPriceDecreaseFormat">%1$s(%2$s%%)</string>
     <string name="dateFormat">* %1$s 기준</string>
