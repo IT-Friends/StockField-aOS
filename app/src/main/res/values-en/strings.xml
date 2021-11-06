@@ -22,4 +22,5 @@
     <string name="tickerTitle">Ticker</string>
     <string name="rankTitle">Rank</string>
     <string name="basicInfo">Summary</string>
+    <string name="more">More</string>
 </resources>

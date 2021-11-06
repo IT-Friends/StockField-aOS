@@ -22,4 +22,5 @@
     <string name="failToLoading">데이터를 불러오는데 실패했습니다.</string>
     <string name="etfHoldingsInfoFormat">Stockfield에서 제공하는 ETF중 %1$d곳에서 보유중입니다.</string>
     <string name="dateFormat">* %1$s 기준</string>
+    <string name="more">더보기</string>
 </resources>
