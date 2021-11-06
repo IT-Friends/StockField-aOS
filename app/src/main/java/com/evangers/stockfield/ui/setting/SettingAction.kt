@@ -8,4 +8,7 @@ sealed class SettingAction {
         val version: SettingsItem.Version,
         val openSource: SettingsItem.OpenSource
     ) : SettingAction()
+
+    object NavToCalculator : SettingAction()
+    object NavToOpenSource : SettingAction()
 }

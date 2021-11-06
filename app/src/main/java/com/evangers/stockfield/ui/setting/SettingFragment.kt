@@ -45,11 +45,13 @@ class SettingFragment @Inject constructor(
 
     override fun initUi() {
         this.onBackPressedDispatcher { viewModel.onBackPressed() }
-        settingsAdapter = SettingsAdapter(PresenterImpl(
-            OpenSourcePresenterImpl(viewModel),
-            VersionPresenterImpl(),
-            CalculatorPresenterImpl(viewModel)
-        ))
+        settingsAdapter = SettingsAdapter(
+            PresenterImpl(
+                OpenSourcePresenterImpl(viewModel),
+                VersionPresenterImpl(),
+                CalculatorPresenterImpl(viewModel)
+            )
+        )
         with(binding) {
 
             toolbar.backButton.setOnClickListener {
@@ -90,6 +92,14 @@ class SettingFragment @Inject constructor(
             settingsAdapter.update(state.items)
             state.navToBack?.getValueIfNotHandled()?.let {
                 findNavController().popBackStack()
+            }
+            state.navToCalculator?.getValueIfNotHandled()?.let {
+                val action =
+                    SettingFragmentDirections.actionSettingFragmentToWebViewFragment(getString(R.string.calculator_url))
+                findNavController().navigate(action)
+            }
+            state.navToOpenSource?.getValueIfNotHandled()?.let {
+
             }
         })
     }
