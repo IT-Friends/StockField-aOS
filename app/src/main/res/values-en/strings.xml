@@ -23,4 +23,7 @@
     <string name="rankTitle">Rank</string>
     <string name="basicInfo">Summary</string>
     <string name="more">More</string>
+    <string name="version">Version</string>
+    <string name="opensource">OpenSource</string>
+    <string name="check_calculator">👆Check out a rate of return\nif did Dollar-Cost-Averaging(DCA)</string>
 </resources>

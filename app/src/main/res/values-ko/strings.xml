@@ -23,4 +23,7 @@
     <string name="etfHoldingsInfoFormat">Stockfield에서 제공하는 ETF중 %1$d곳에서 보유중입니다.</string>
     <string name="dateFormat">* %1$s 기준</string>
     <string name="more">더보기</string>
+    <string name="version">버전</string>
+    <string name="opensource">오픈소스</string>
+    <string name="check_calculator">적립식 투자 수익율\n확인하기👆</string>
 </resources>

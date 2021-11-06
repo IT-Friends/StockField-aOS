@@ -19,4 +19,9 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="TextView.Settings" parent="Base.Widget.MaterialComponents.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>
