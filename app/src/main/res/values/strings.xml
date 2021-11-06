@@ -5,7 +5,7 @@
     <string name="admob_home_banner_unit_id" translatable="false">ca-app-pub-3621285827573653/5967001458</string>
     <string name="admob_open_unit_id" translatable="false">ca-app-pub-3621285827573653/9980314370</string>
     <string name="admob_close_unit_id" translatable="false">ca-app-pub-3621285827573653/8424524271</string>
-
+    <string name="calculator_url" translatable="false">https://stock-field.com/stock_simulator?item=tsla&amp;value=30&amp;start_day=2020-01-13&amp;last_day=2020-11-09</string>
 
     <string name="closeApp">Exit App</string>
     <string name="returnToApp">Back</string>
@@ -49,4 +49,8 @@
     <string name="etfHoldingsInfoFormat">In Stockfield, %1$d of ETFs have the stock.</string>
 
     <string name="fundImageDescription" translatable="false">Fund Image</string>
+    <string name="more">More</string>
+    <string name="version">Version</string>
+    <string name="opensource">OpenSource</string>
+    <string name="check_calculator">👆Check out a rate of return\nif did Dollar-Cost-Averaging(DCA)</string>
 </resources>

@@ -16,7 +16,7 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -35,6 +35,14 @@
                 app:argType="string"
                 app:nullable="false" />
         </fragment>
+
+        <action
+            android:id="@+id/actionHomeFragmentToSettingFragment"
+            app:destination="@id/settingFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
         <action
             android:id="@+id/actionHomeFragmentToDetailFragment"
@@ -148,5 +156,37 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.evangers.stockfield.ui.setting.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting">
 
+        <action
+            android:id="@+id/actionSettingFragmentToWebViewFragment"
+            app:destination="@id/webviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="url"
+                app:argType="string"
+                app:nullable="false" />
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/webviewFragment"
+        android:name="com.evangers.stockfield.ui.webview.WebViewFragment"
+        android:label="WebviewFragment"
+        tools:layout="@layout/fragment_webview">
+
+        <argument
+            android:name="url"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
 </navigation>
