@@ -14,6 +14,7 @@ interface HomeStateBind {
     var dateText: String?
     var isLoading: Event<Boolean>?
     var navToDetail: Event<Pair<String, String>>?
+    var navToMore: Event<Unit>?
     var currentSpinnerPosition: Int
     var currentFundTabPosition: Int
     val dateMap: Map<Int, String>
@@ -29,6 +30,7 @@ class HomeState(
     override var dateText: String? = null,
     override var isLoading: Event<Boolean>? = null,
     override var navToDetail: Event<Pair<String, String>>? = null,
+    override var navToMore: Event<Unit>? = null,
     override var currentSpinnerPosition: Int = -1,
     override var currentFundTabPosition: Int = 0,
     override var displayExitDialog: Boolean = false,
@@ -75,6 +77,9 @@ class HomeState(
             }
             is HomeAction.ExitApp -> {
                 exitApp = Event(Unit)
+            }
+            is HomeAction.NavToMore -> {
+                navToMore = Event(Unit)
             }
         }
     }

@@ -18,4 +18,5 @@ sealed class HomeAction {
     class DisplayDate(val tabIndex: Int) : HomeAction()
     class DisplayExitDialog(val show: Boolean) : HomeAction()
     object ExitApp : HomeAction()
+    object NavToMore : HomeAction()
 }

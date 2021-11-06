@@ -123,4 +123,9 @@ class HomeViewModel @Inject constructor(
         state.update(HomeAction.DisplayExitDialog(false))
         liveData.postValue(state)
     }
+
+    fun onMoreButtonClicked() {
+        state.update(HomeAction.NavToMore)
+        liveData.postValue(state)
+    }
 }
