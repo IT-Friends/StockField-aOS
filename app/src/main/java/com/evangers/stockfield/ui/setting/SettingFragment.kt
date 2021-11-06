@@ -1,5 +1,6 @@
 package com.evangers.stockfield.ui.setting
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -17,6 +18,7 @@ import com.evangers.stockfield.ui.setting.presenter.OpenSourcePresenterImpl
 import com.evangers.stockfield.ui.setting.presenter.PresenterImpl
 import com.evangers.stockfield.ui.setting.presenter.VersionPresenterImpl
 import com.evangers.stockfield.ui.util.onBackPressedDispatcher
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -99,10 +101,8 @@ class SettingFragment @Inject constructor(
                 findNavController().navigate(action)
             }
             state.navToOpenSource?.getValueIfNotHandled()?.let {
-
+                startActivity(Intent(requireContext(), OssLicensesMenuActivity::class.java))
             }
         })
     }
-
-
 }
