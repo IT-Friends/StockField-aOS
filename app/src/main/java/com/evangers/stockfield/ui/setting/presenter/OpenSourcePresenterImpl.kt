@@ -11,7 +11,7 @@ class OpenSourcePresenterImpl @Inject constructor(
 ) : OpenSourcePresenter {
     override fun initUi(item: SettingsItem.OpenSource, view: View) {
         with(ItemSettingOpensourceBinding.bind(view)) {
-            content.setOnClickListener { settingsController.onOpenSourceLicenseClicked() }
+            this.root.setOnClickListener { settingsController.onOpenSourceLicenseClicked() }
         }
     }
 }
