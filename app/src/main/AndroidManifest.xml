@@ -14,7 +14,7 @@
         android:theme="@style/Theme.StockField"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name=".ui.activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -22,11 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:screenOrientation="portrait" />
-
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

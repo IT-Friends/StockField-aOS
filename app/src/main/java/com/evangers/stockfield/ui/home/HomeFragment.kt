@@ -86,6 +86,9 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home),
             }
         })
         binding.run {
+            moreButton.setOnClickListener {
+                viewModel.onMoreButtonClicked()
+            }
             companySpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -188,6 +191,10 @@ class HomeFragment : StockFieldFragment(R.layout.fragment_home),
                     )
                     this.adapter = adapter
                 }
+            }
+            state.navToMore?.getValueIfNotHandled()?.let {
+                val action = HomeFragmentDirections.actionHomeFragmentToSettingFragment()
+                findNavController().navigate(action)
             }
             state.companyFundList?.let { fundPagerAdapter.replaceFundList(it) }
             if (fundPagerAdapter.replaceFragmentList(state.fragmentList)) {

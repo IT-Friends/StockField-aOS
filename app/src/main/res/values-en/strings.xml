@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="highestPrice_52">52 Week Highest</string>
+    <string name="lowestPrice_52">52 Week Lowest</string>
+    <string name="sector">Sector</string>
+    <string name="industry">Industry</string>
+    <string name="totalPrice">Market Cap</string>
+    <string name="closeApp">Exit App</string>
+    <string name="returnToApp">Back</string>
+    <string name="checkingServerState">Checking Server</string>
+    <string name="loadingData">Fetching Data</string>
+    <string name="confirm">Confirm</string>
+    <string name="fundCollection">Other Funds</string>
+    <string name="commonErrorMessage">Unknown Error occurred.</string>
+    <string name="failToLoading">Failed to fetch data.</string>
+    <string name="etfHoldingsInfoFormat">In Stockfield, %1$d of ETFs have the stock.</string>
+    <string name="dateFormat">* %1$s</string>
+    <string name="dateTitle">Date</string>
+    <string name="closingPriceTitle">ClosingPrice</string>
+    <string name="weightTitle">Weight</string>
+    <string name="sharesTitle">Shares</string>
+    <string name="tickerTitle">Ticker</string>
+    <string name="rankTitle">Rank</string>
+    <string name="basicInfo">Summary</string>
+    <string name="more">More</string>
+    <string name="version">Version</string>
+    <string name="opensource">OpenSource</string>
+    <string name="check_calculator">👆Check out a rate of return\nif did Dollar-Cost-Averaging(DCA)</string>
+</resources>

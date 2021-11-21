@@ -9,6 +9,7 @@ import com.evangers.stockfield.databinding.LayoutStocktableRowBinding
 import com.evangers.stockfield.domain.model.FundHoldingComparisonModel
 import com.evangers.stockfield.ui.fundholdings.HomeController
 import com.evangers.stockfield.ui.util.applyDifference
+import com.evangers.stockfield.ui.util.applyRankDifference
 import java.text.NumberFormat
 
 class FundHoldingsAdapter constructor(
@@ -54,8 +55,8 @@ class FundHoldingViewHolder constructor(
     fun bind(item: FundHoldingComparisonModel) {
         with(LayoutStocktableRowBinding.bind(itemView)) {
             rankContent.text = item.rank.toString()
-            rankDifference.applyDifference(item.rankDifference)
-
+            rankDifference.applyRankDifference(item.rankDifference)
+            rankIcon.applyRankDifference(item.rankDifference)
             tickerContent.text = item.ticker
             tickerDisplayName.text = item.displayName
 

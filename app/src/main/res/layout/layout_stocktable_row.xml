@@ -26,14 +26,26 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="1" />
 
+        <ImageView
+            android:id="@+id/rankIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/arrow_down_float"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/rankDifference"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rankContent" />
+
         <TextView
             android:id="@+id/rankDifference"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/rankIcon"
             app:layout_constraintTop_toBottomOf="@id/rankContent"
-            tools:text="+2" />
+            tools:text="2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -60,8 +72,8 @@
             android:id="@+id/tickerDisplayName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="center"
             android:ellipsize="end"
+            android:gravity="center"
             android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tickerContent"

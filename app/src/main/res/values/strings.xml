@@ -1,20 +1,20 @@
 <resources>
-    <string name="app_name">StockField</string>
-    <string name="api_base">https://stock-field.com/api/</string>
-    <string name="admob_app_id">ca-app-pub-3621285827573653~2548638804</string>
-    <string name="admob_home_banner_unit_id">ca-app-pub-3621285827573653/5967001458</string>
-    <string name="admob_open_unit_id">ca-app-pub-3621285827573653/9980314370</string>
-    <string name="admob_close_unit_id">ca-app-pub-3621285827573653/8424524271</string>
+    <string name="app_name" translatable="false">StockField</string>
+    <string name="api_base" translatable="false">https://stock-field.com/api/</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-3621285827573653~2548638804</string>
+    <string name="admob_home_banner_unit_id" translatable="false">ca-app-pub-3621285827573653/5967001458</string>
+    <string name="admob_open_unit_id" translatable="false">ca-app-pub-3621285827573653/9980314370</string>
+    <string name="admob_close_unit_id" translatable="false">ca-app-pub-3621285827573653/8424524271</string>
+    <string name="calculator_url" translatable="false">https://stock-field.com/stock_simulator?item=tsla&amp;value=30&amp;start_day=2020-01-13&amp;last_day=2020-11-09</string>
 
+    <string name="closeApp">Exit App</string>
+    <string name="returnToApp">Back</string>
 
-    <string name="closeApp">앱 종료하기</string>
-    <string name="returnToApp">돌아가기</string>
+    <string name="checkingServerState">Checking Server</string>
+    <string name="loadingData">Fetching Data</string>
 
-    <string name="checkingServerState">서버 체크 중</string>
-    <string name="loadingData">데이터 불러오는 중</string>
-
-    <string name="confirm">확인</string>
-    <string name="commonErrorMessage">알 수 없는 에러가 발생했습니다.</string>
+    <string name="confirm">Confirm</string>
+    <string name="commonErrorMessage">Unknown Error occurred.</string>
 
     <string name="rankTitle">Rank</string>
     <string name="tickerTitle">Ticker</string>
@@ -23,29 +23,34 @@
     <string name="closingPriceTitle">ClosingPrice</string>
     <string name="dateTitle">Date</string>
 
-    <string name="numberWithDollar">$ %1$s</string>
-    <string name="numberWithPlus">+%1$s</string>
-    <string name="numberWithPercent">%1$s %%</string>
-    <string name="closingPriceIncreaseFormat">+%1$s(%2$s%%)</string>
-    <string name="closingPriceDecreaseFormat">%1$s(%2$s%%)</string>
-    <string name="dateFormat">* %1$s 기준</string>
-    <string name="filter">filter</string>
+    <string name="numberWithDollar" translatable="false">$ %1$s</string>
+    <string name="numberWithPlus" translatable="false">+%1$s</string>
+    <string name="numberWithPercent" translatable="false">%1$s %%</string>
+    <string name="brand_new" translatable="false">NEW</string>
+    <string name="closingPriceIncreaseFormat" translatable="false">+%1$s(%2$s%%)</string>
+    <string name="closingPriceDecreaseFormat" translatable="false">%1$s(%2$s%%)</string>
+    <string name="dateFormat">* %1$s</string>
+    <string name="filter" translatable="false">filter</string>
 
-    <string name="moveToBack">뒤로가기</string>
-    <string name="highestPrice_52">52주 최고가</string>
-    <string name="lowestPrice_52">52주 최저가</string>
-    <string name="sector">사업 분야</string>
-    <string name="industry">주요 산업</string>
-    <string name="totalPrice">시가 총액</string>
-    <string name="PER">PER</string>
-    <string name="ROE">ROE</string>
-    <string name="PBR">PBR</string>
+    <string name="moveToBack" translatable="false">move to back</string>
+    <string name="highestPrice_52">52 Week Highest</string>
+    <string name="lowestPrice_52">52 Week Lowest</string>
+    <string name="sector">Sector</string>
+    <string name="industry">Industry</string>
+    <string name="totalPrice">Market Cap</string>
+    <string name="PER" translatable="false">PER</string>
+    <string name="ROE" translatable="false">ROE</string>
+    <string name="PBR" translatable="false">PBR</string>
 
-    <string name="basicInfo">기본 정보</string>
-    <string name="fundCollection">펀드 모아보기</string>
+    <string name="basicInfo">Summary</string>
+    <string name="fundCollection">Other Funds</string>
 
-    <string name="failToLoading">데이터를 불러오는데 실패했습니다.</string>
-    <string name="etfHoldingsInfoFormat">Stockfield에서 제공하는 ETF중 %1$d곳에서 보유중입니다.</string>
+    <string name="failToLoading">Failed to fetch data.</string>
+    <string name="etfHoldingsInfoFormat">In Stockfield, %1$d of ETFs have the stock.</string>
 
-    <string name="fundImageDescription">Fund Image</string>
+    <string name="fundImageDescription" translatable="false">Fund Image</string>
+    <string name="more">More</string>
+    <string name="version">Version</string>
+    <string name="opensource">OpenSource</string>
+    <string name="check_calculator">👆Check out a rate of return\nif did Dollar-Cost-Averaging(DCA)</string>
 </resources>
